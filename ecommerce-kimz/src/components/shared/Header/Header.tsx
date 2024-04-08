@@ -1,4 +1,4 @@
-import { Cart } from '../../eCommerce'
+import { Cart } from '@components/eCommerce'
 import styles from './styles.module.css'
 const { headerContainer, headerLogo } = styles
 import { Badge, Navbar, Nav, Container } from 'react-bootstrap'

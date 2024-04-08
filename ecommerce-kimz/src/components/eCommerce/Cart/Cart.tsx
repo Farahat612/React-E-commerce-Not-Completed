@@ -1,4 +1,4 @@
-import CartIcon from '../../../assets/svg/cart.svg?react'
+import CartIcon from '@assets/svg/cart.svg?react'
 
 import styles from './styles.module.css'
 const { cartContainer, cartQuantity } = styles

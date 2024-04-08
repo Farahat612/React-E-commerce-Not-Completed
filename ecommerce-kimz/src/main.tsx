@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/global.css'
 // components
-import MainLayout from './layouts/Main/MainLayout.tsx'
+import { MainLayout } from '@layouts/'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<MainLayout />)
