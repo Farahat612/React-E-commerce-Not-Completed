@@ -1,15 +1,4 @@
 body {
   background-color: rgb(248, 249, 250);
-}
-
-.notFound {
-  padding-top: 15%;
-  text-align: center;
-}
-
-.notFound h1 {
-  font-size: 130px;
-}
-.notFound p {
-  font-size: 50px;
+  overflow-x: hidden;
 }

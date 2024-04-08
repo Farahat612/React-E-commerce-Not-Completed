@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  height: 50vh;
+  width: 100%;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: start;
+  width: 30%;
+  height: 100%;
+}
+
+.left h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+}
+.left p {
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+.linkStyle {
+  text-decoration: none;
+  color: white;
+}
+
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+}
+
+.right img {
+  width: 180%;
+}
