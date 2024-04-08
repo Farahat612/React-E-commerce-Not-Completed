@@ -26,7 +26,9 @@ const ProductsWrapper = () => {
   // Check if prefix is a string and contains only lowercase letters
   useEffect(() => {
     if (typeof prefix !== 'string' || !/^[a-z]+$/.test(prefix)) {
-      navigate('/notFound')
+      navigate('/notFound', {
+        state: { message: 'The category you are looking for can not be found' },
+      })
     }
   }, [prefix, navigate])
 
