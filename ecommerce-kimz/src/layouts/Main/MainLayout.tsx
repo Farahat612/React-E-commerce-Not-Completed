@@ -1,12 +1,17 @@
 import { Container } from 'react-bootstrap'
 import { Header, Footer } from '@components/shared'
 import styles from './styles.module.css'
-const { container } = styles
+const { container, wrapper } = styles
 
-const MainLayout = () => {
+type MainLayoutProps = {
+  children: React.ReactNode
+}
+
+const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <Container className={container}>
       <Header />
+      <div className={wrapper}>{children}</div>
       <Footer />
     </Container>
   )
