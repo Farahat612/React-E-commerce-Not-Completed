@@ -1,0 +1,14 @@
+{
+  "name": "backend-json-server",
+  "version": "1.0.0",
+  "description": "json server to act as a backend server for the react front app",
+  "main": "index.js",
+  "scripts": {
+    "start": "json-server --watch db.json --port 5005"
+  },
+  "author": "Mohamed Farahat",
+  "license": "MIT",
+  "dependencies": {
+    "json-server": "^1.0.0-alpha.23"
+  }
+}
