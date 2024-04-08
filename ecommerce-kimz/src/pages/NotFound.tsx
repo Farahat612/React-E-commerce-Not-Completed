@@ -11,13 +11,13 @@ const NotFound = () => {
   return (
     <div className={wrapper}>
       <div className={left}>
-        <h1> I have bad news for you {`:(`} </h1>
+        <h1> I have bad news for you</h1>
         <p>
           The page you are looking for might be removed or is temporarily
           unavailable.
         </p>
         <Button variant='info'>
-          <Link className={linkStyle} to='/'>
+          <Link className={linkStyle} to='/' replace={true}>
             Come Home Babe
           </Link>
         </Button>
