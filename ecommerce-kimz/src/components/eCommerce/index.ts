@@ -1,3 +1,5 @@
-import Cart from "./Cart/Cart";
+import Cart from './Cart/Cart'
+import Category from './Category/Category'
+import Product from './Product/Product'
 
-export { Cart };
+export { Cart, Category, Product }
