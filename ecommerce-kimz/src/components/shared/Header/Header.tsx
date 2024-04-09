@@ -12,7 +12,7 @@ const Header = () => {
           <Badge bg='light' text='dark'>
             HEXA
           </Badge>
-          <Badge bg='info'>ASHOP</Badge>
+          <Badge bg='info'>SHOP</Badge>
         </h1>
         <Cart />
       </div>
