@@ -1,11 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 // importing getCategories thunk
 import getCategories from './actions/getCategories'
+// Importing the types
+import { ICategory } from '@customTypescategory'
+import { TLoading } from '@customTypesshared'
 
 // Defining types for the state
 export interface ICategoriesState {
-  records: { id: number; title: string; prefix: string; img: string }[]
-  loading: 'idle' | 'pending' | 'succeeded' | 'failed'
+  records: ICategory[]
+  loading: TLoading
   error: string | null
 }
 
