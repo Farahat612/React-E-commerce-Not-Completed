@@ -17,34 +17,34 @@ const Categories = () => {
       dispatch(getCategories())
     }
   }, [dispatch, records])
+
+  const categoriesList =
+    records.length > 0
+      ? records.map((record) => (
+          <Col
+            xs={3}
+            key={record.id}
+            className='d-flex justify-content-center mb-5 mt-2'
+          >
+            <Category {...record} />
+          </Col>
+        ))
+      : 'Sorry, no caetgories available at the moment.'
+
+  // if the loading state is pending
+  if (loading === 'pending') {
+    return 'Loading...'
+  }
+
+  // if there is an error
+  if (error) {
+    return `An error occurred: ${error}`
+  }
+
+  // displaying the categories
   return (
     <Container>
-      <Row>
-        <Col xs={6} md={3} className='d-flex justify-content-center mb-5 mt-2'>
-          <Category />
-        </Col>
-        <Col xs={6} md={3} className='d-flex justify-content-center mb-5 mt-2'>
-          <Category />
-        </Col>
-        <Col xs={6} md={3} className='d-flex justify-content-center mb-5 mt-2'>
-          <Category />
-        </Col>
-        <Col xs={6} md={3} className='d-flex justify-content-center mb-5 mt-2'>
-          <Category />
-        </Col>
-        <Col xs={6} md={3} className='d-flex justify-content-center mb-5 mt-2'>
-          <Category />
-        </Col>
-        <Col xs={6} md={3} className='d-flex justify-content-center mb-5 mt-2'>
-          <Category />
-        </Col>
-        <Col xs={6} md={3} className='d-flex justify-content-center mb-5 mt-2'>
-          <Category />
-        </Col>
-        <Col xs={6} md={3} className='d-flex justify-content-center mb-5 mt-2'>
-          <Category />
-        </Col>
-      </Row>
+      <Row>{categoriesList}</Row>
     </Container>
   )
 }
