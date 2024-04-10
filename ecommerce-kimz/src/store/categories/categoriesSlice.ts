@@ -30,7 +30,7 @@ const categoriesSlice = createSlice({
     // Handling the getCategories.fulfilled action
     builder.addCase(getCategories.fulfilled, (state, action) => {
       state.loading = 'succeeded'
-      state.records.push(action.payload)
+      state.records = action.payload
       state.error = null
     })
     // Handling the getCategories.rejected action

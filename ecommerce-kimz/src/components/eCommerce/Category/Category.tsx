@@ -13,7 +13,7 @@ interface ICategoryProps {
 const Category = ({ title, img, prefix }: ICategoryProps) => {
   return (
     <div className={category}>
-      <Link to={`/categories/${prefix}`}>
+      <Link to={`/categories/products/${prefix}`}>
         <div className={categoryImg}>
           <img src={img} alt={title} />
         </div>

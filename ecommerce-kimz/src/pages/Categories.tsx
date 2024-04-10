@@ -18,19 +18,6 @@ const Categories = () => {
     }
   }, [dispatch, records])
 
-  const categoriesList =
-    records.length > 0
-      ? records.map((record) => (
-          <Col
-            xs={3}
-            key={record.id}
-            className='d-flex justify-content-center mb-5 mt-2'
-          >
-            <Category {...record} />
-          </Col>
-        ))
-      : 'Sorry, no caetgories available at the moment.'
-
   // if the loading state is pending
   if (loading === 'pending') {
     return 'Loading...'
@@ -38,13 +25,29 @@ const Categories = () => {
 
   // if there is an error
   if (error) {
-    return `An error occurred: ${error}`
+    return `No categories found. Error: ${error}`
   }
+
+  console.log(records)
 
   // displaying the categories
   return (
     <Container>
-      <Row>{categoriesList}</Row>
+      <Row>
+        {records.map((category) => (
+          <Col
+            key={category.id}
+            xs={3}
+            className='d-flex justify-content-center mb-5 mt-2'
+          >
+            <Category
+              title={category.title}
+              img={category.img}
+              prefix={category.prefix}
+            />
+          </Col>
+        ))}
+      </Row>
     </Container>
   )
 }
