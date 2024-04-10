@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
-// importing getCategories thunk
-import getCategories from './actions/getCategories'
+// importing getProducts thunk
+import getProducts from './actions/getProducts'
 // Importing the types
-import { ICategory } from '@customTypescategory'
+import { IProduct } from '@customTypesproduct'
 import { TLoading } from '@customTypesshared'
 
 // Defining types for the state
 export interface ICategoriesState {
-  records: ICategory[]
+  records: IProduct[]
   loading: TLoading
   error: string | null
 }
@@ -20,31 +20,31 @@ const initialState: ICategoriesState = {
 }
 
 // Creating the slice
-const categoriesSlice = createSlice({
+const productsSlice = createSlice({
   name: 'categories',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // Handling the getCategories.pending action
-    builder.addCase(getCategories.pending, (state) => {
+    // Handling the getProducts.pending action
+    builder.addCase(getProducts.pending, (state) => {
       state.loading = 'pending'
       state.error = null
     })
-    // Handling the getCategories.fulfilled action
-    builder.addCase(getCategories.fulfilled, (state, action) => {
+    // Handling the getProducts.fulfilled action
+    builder.addCase(getProducts.fulfilled, (state, action) => {
       state.loading = 'succeeded'
       state.records = action.payload
       state.error = null
     })
-    // Handling the getCategories.rejected action
-    builder.addCase(getCategories.rejected, (state, action) => {
+    // Handling the getProducts.rejected action
+    builder.addCase(getProducts.rejected, (state, action) => {
       state.loading = 'failed'
       state.error = action.payload as string | null // Type assertion is required here because the payload type is unknown
     })
   },
 })
 
-// Exporting the getCategories thunk
-export { getCategories }
+// Exporting the getProducts thunk
+export { getProducts }
 // Exporting the reducer
-export default categoriesSlice.reducer
+export default productsSlice.reducer
