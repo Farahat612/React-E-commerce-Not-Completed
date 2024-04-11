@@ -16,3 +16,34 @@
   font-size: 12px;
 }
 
+.cart {
+  position: relative;
+}
+
+.cartContainer h3 {
+  font-size: 17px;
+  margin-left: 6px;
+  margin-bottom: 0;
+}
+
+.pumpCartQuantity {
+  animation: pumping 300ms ease-out;
+}
+
+@keyframes pumping {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0.8);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.7);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
