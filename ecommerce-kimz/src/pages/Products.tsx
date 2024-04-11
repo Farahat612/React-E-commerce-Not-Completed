@@ -1,6 +1,6 @@
-import { Container, Row, Col } from 'react-bootstrap'
 import { Product } from '@components/eCommerce'
 import { Loading } from '@componentsfeedback'
+import { GridList } from '@componentsshared'
 // importing redux hooks
 import { useAppDispatch, useAppSelector } from '@storehooks'
 // importing the getProducts thunk and the productsCleanUp action
@@ -9,6 +9,8 @@ import { getProducts, productsCleanUp } from '@store/products/productsSlice'
 import { useEffect } from 'react'
 // importing useParams
 import { useParams } from 'react-router-dom'
+
+import { IProduct } from '@customTypesproduct'
 
 const Products = () => {
   const params = useParams()
@@ -22,33 +24,14 @@ const Products = () => {
     }
   }, [dispatch, params])
 
-  // // Handling the loading state
-  // if (loading === 'pending') {
-  //   return <h1>Loading...</h1>
-  // }
-
-  // // Handling the error state
-  // if (loading === 'failed') {
-  //   return <h1>{error}</h1>
-  // }
-
   // Displaying the products
   return (
-    <Container>
-      <Loading loading={loading} error={error}>
-        <Row>
-          {records.map((product) => (
-            <Col
-              xs={3}
-              key={product.id}
-              className='d-flex justify-content-center mb-5 mt-2'
-            >
-              <Product {...product} />
-            </Col>
-          ))}
-        </Row>
-      </Loading>
-    </Container>
+    <Loading loading={loading} error={error}>
+      <GridList<IProduct>
+        records={records}
+        renderItem={(record) => <Product {...record} />}
+      />
+    </Loading>
   )
 }
 

@@ -1,11 +1,14 @@
-import { Container, Row, Col } from 'react-bootstrap'
+// Components
 import { Category } from '@components/eCommerce'
 import { Loading } from '@componentsfeedback'
+import { GridList } from '@componentsshared'
 
 // Redux
 import { useAppDispatch, useAppSelector } from '@store/hooks'
 import { getCategories } from '@store/categories/categoriesSlice'
 import { useEffect } from 'react'
+// Types
+import { ICategory } from '@customTypescategory'
 
 const Categories = () => {
   const dispatch = useAppDispatch()
@@ -19,33 +22,14 @@ const Categories = () => {
     }
   }, [dispatch, records])
 
-  // // if the loading state is pending
-  // if (loading === 'pending') {
-  //   return 'Loading...'
-  // }
-
-  // // if there is an error
-  // if (error) {
-  //   return `No categories found. Error: ${error}`
-  // }
-
   // displaying the categories
   return (
-    <Container>
-      <Loading loading={loading} error={error}>
-        <Row>
-          {records.map((category) => (
-            <Col
-              xs={3}
-              key={category.id}
-              className='d-flex justify-content-center mb-5 mt-2'
-            >
-              <Category {...category} />
-            </Col>
-          ))}
-        </Row>
-      </Loading>
-    </Container>
+    <Loading loading={loading} error={error}>
+      <GridList<ICategory>
+        records={records}
+        renderItem={(record) => <Category {...record} />}
+      />
+    </Loading>
   )
 }
 
