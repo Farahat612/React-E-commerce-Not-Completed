@@ -2,8 +2,17 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 
 // redux persist
-import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
 
 import categoriesReducer from './categories/categoriesSlice'
 import productsReducer from '@storeproducts/productsSlice'
@@ -25,6 +34,13 @@ const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
 
 const store = configureStore({
   reducer: persistedReducer,
+  // solving the non-serializable value cosole warning issue
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
