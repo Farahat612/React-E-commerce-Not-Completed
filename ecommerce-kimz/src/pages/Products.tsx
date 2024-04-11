@@ -34,8 +34,8 @@ const Products = () => {
 
   // Displaying the products
   return (
-    <Loading loading={loading} error={error}>
-      <Container>
+    <Container>
+      <Loading loading={loading} error={error}>
         <Row>
           {records.map((product) => (
             <Col
@@ -47,8 +47,8 @@ const Products = () => {
             </Col>
           ))}
         </Row>
-      </Container>
-    </Loading>
+      </Loading>
+    </Container>
   )
 }
 

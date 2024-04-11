@@ -31,8 +31,8 @@ const Categories = () => {
 
   // displaying the categories
   return (
-    <Loading loading={loading} error={error}>
-      <Container>
+    <Container>
+      <Loading loading={loading} error={error}>
         <Row>
           {records.map((category) => (
             <Col
@@ -44,8 +44,8 @@ const Categories = () => {
             </Col>
           ))}
         </Row>
-      </Container>
-    </Loading>
+      </Loading>
+    </Container>
   )
 }
 
