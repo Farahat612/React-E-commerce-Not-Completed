@@ -24,11 +24,18 @@ const Products = () => {
     }
   }, [dispatch, params])
 
+  // Getting the cart items from the store
+  const cartItems = useAppSelector((state) => state.cart.items)
+  const productsFullInfo = records.map((el) => ({
+    ...el,
+    quantity: cartItems[el.id] || 0,
+  }))
+
   // Displaying the products
   return (
     <Loading loading={loading} error={error}>
       <GridList<IProduct>
-        records={records}
+        records={productsFullInfo}
         renderItem={(record) => <Product {...record} />}
       />
     </Loading>

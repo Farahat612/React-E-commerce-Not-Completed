@@ -1,17 +1,21 @@
 import { Button, Spinner } from 'react-bootstrap'
 import styles from './styles.module.css'
-const { product, productImg } = styles
+const { product, productImg, maximumNotice } = styles
 // importing types
 import { IProduct } from '@customTypes/product'
 // redux
 import { useAppDispatch } from '@storehooks'
 import { addToCart } from '@storecart/cartSlice'
 // react hooks
-import { useEffect, useState } from 'react'
+import { useEffect, useState, memo } from 'react'
 
-const Product = ({ id, title, price, img }: IProduct) => {
+const Product = memo(({ id, title, price, img, max, quantity }: IProduct) => {
   // initializing the dispatch
   const dispatch = useAppDispatch()
+
+  // Tracking the maximum quantity of the product
+  const currentRemainingQuantity = max - (quantity ?? 0)
+  const quantityReachedToMax = currentRemainingQuantity <= 0 ? true : false
 
   // state to disable the button after adding the product to the cart
   const [isBtnDisabled, setIsBtnDisabled] = useState(false)
@@ -32,6 +36,7 @@ const Product = ({ id, title, price, img }: IProduct) => {
   const addToCartHandler = () => {
     dispatch(addToCart(id))
     setIsBtnDisabled(true)
+    console.log(max, quantity, currentRemainingQuantity)
   }
 
   return (
@@ -40,12 +45,17 @@ const Product = ({ id, title, price, img }: IProduct) => {
         <img src={img} alt={title} />
       </div>
       <h2>{title}</h2>
-      <h3>{price} EGP</h3>
+      <h3>{(+price).toFixed(2)} EGP</h3>
+      <p className={maximumNotice}>
+        {quantityReachedToMax
+          ? 'You reach to the limit'
+          : `You can add ${currentRemainingQuantity} item(s)`}
+      </p>
       <Button
         variant='info'
         style={{ color: 'white' }}
         onClick={addToCartHandler}
-        disabled={isBtnDisabled}
+        disabled={isBtnDisabled || quantityReachedToMax}
       >
         {isBtnDisabled ? (
           <>
@@ -58,6 +68,6 @@ const Product = ({ id, title, price, img }: IProduct) => {
       </Button>
     </div>
   )
-}
+})
 
 export default Product
