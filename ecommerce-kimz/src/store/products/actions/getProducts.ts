@@ -8,7 +8,7 @@ type TResponse = IProduct[]
 
 // Defining the thunk
 export const getProductsByCategoryPrefix = createAsyncThunk(
-  'products/actGetProductsByCatPrefix',
+  'products/getProductsByCategoryPrefix',
   async (prefix: string, { rejectWithValue }) => {
     try {
       const response = await axios.get<TResponse>(
