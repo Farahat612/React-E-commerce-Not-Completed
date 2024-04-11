@@ -1,5 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import { Category } from '@components/eCommerce'
+import { Loading } from '@componentsfeedback'
 
 // Redux
 import { useAppDispatch, useAppSelector } from '@store/hooks'
@@ -18,31 +19,33 @@ const Categories = () => {
     }
   }, [dispatch, records])
 
-  // if the loading state is pending
-  if (loading === 'pending') {
-    return 'Loading...'
-  }
+  // // if the loading state is pending
+  // if (loading === 'pending') {
+  //   return 'Loading...'
+  // }
 
-  // if there is an error
-  if (error) {
-    return `No categories found. Error: ${error}`
-  }
+  // // if there is an error
+  // if (error) {
+  //   return `No categories found. Error: ${error}`
+  // }
 
   // displaying the categories
   return (
-    <Container>
-      <Row>
-        {records.map((category) => (
-          <Col
-            xs={3}
-            key={category.id}
-            className='d-flex justify-content-center mb-5 mt-2'
-          >
-            <Category {...category} />
-          </Col>
-        ))}
-      </Row>
-    </Container>
+    <Loading loading={loading} error={error}>
+      <Container>
+        <Row>
+          {records.map((category) => (
+            <Col
+              xs={3}
+              key={category.id}
+              className='d-flex justify-content-center mb-5 mt-2'
+            >
+              <Category {...category} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    </Loading>
   )
 }
 

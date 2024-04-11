@@ -1,5 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import { Product } from '@components/eCommerce'
+import { Loading } from '@componentsfeedback'
 // importing redux hooks
 import { useAppDispatch, useAppSelector } from '@storehooks'
 // importing the getProducts thunk and the productsCleanUp action
@@ -21,31 +22,33 @@ const Products = () => {
     }
   }, [dispatch, params])
 
-  // Handling the loading state
-  if (loading === 'pending') {
-    return <h1>Loading...</h1>
-  }
+  // // Handling the loading state
+  // if (loading === 'pending') {
+  //   return <h1>Loading...</h1>
+  // }
 
-  // Handling the error state
-  if (loading === 'failed') {
-    return <h1>{error}</h1>
-  }
+  // // Handling the error state
+  // if (loading === 'failed') {
+  //   return <h1>{error}</h1>
+  // }
 
   // Displaying the products
   return (
-    <Container>
-      <Row>
-        {records.map((product) => (
-          <Col
-            xs={3}
-            key={product.id}
-            className='d-flex justify-content-center mb-5 mt-2'
-          >
-            <Product {...product} />
-          </Col>
-        ))}
-      </Row>
-    </Container>
+    <Loading loading={loading} error={error}>
+      <Container>
+        <Row>
+          {records.map((product) => (
+            <Col
+              xs={3}
+              key={product.id}
+              className='d-flex justify-content-center mb-5 mt-2'
+            >
+              <Product {...product} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    </Loading>
   )
 }
 
