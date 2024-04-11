@@ -1,6 +1,6 @@
 import { Product } from '@components/eCommerce'
 import { Loading } from '@componentsfeedback'
-import { GridList } from '@componentsshared'
+import { GridList, Heading } from '@componentsshared'
 // importing redux hooks
 import { useAppDispatch, useAppSelector } from '@storehooks'
 // importing the getProducts thunk and the productsCleanUp action
@@ -33,12 +33,18 @@ const Products = () => {
 
   // Displaying the products
   return (
-    <Loading loading={loading} error={error}>
-      <GridList<IProduct>
-        records={productsFullInfo}
-        renderItem={(record) => <Product {...record} />}
-      />
-    </Loading>
+    <>
+      <Heading>
+        {' '}
+        <span className='text-capitalize'>{params.prefix}</span> Products
+      </Heading>
+      <Loading loading={loading} error={error}>
+        <GridList<IProduct>
+          records={productsFullInfo}
+          renderItem={(record) => <Product {...record} />}
+        />
+      </Loading>
+    </>
   )
 }
 

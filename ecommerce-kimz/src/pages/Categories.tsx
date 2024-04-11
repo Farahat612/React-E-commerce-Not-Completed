@@ -1,7 +1,7 @@
 // Components
 import { Category } from '@components/eCommerce'
 import { Loading } from '@componentsfeedback'
-import { GridList } from '@componentsshared'
+import { GridList, Heading } from '@componentsshared'
 
 // Redux
 import { useAppDispatch, useAppSelector } from '@store/hooks'
@@ -24,12 +24,15 @@ const Categories = () => {
 
   // displaying the categories
   return (
-    <Loading loading={loading} error={error}>
-      <GridList<ICategory>
-        records={records}
-        renderItem={(record) => <Category {...record} />}
-      />
-    </Loading>
+    <>
+      <Heading>Categories</Heading>
+      <Loading loading={loading} error={error}>
+        <GridList<ICategory>
+          records={records}
+          renderItem={(record) => <Category {...record} />}
+        />
+      </Loading>
+    </>
   )
 }
 
