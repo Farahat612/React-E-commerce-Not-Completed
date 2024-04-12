@@ -17,6 +17,7 @@ import {
   Login,
   Register,
   NotFound,
+  Cart,
 } from '@pages/'
 
 // Products route guard -- > Validates the category prefix in client side
@@ -54,6 +55,7 @@ const AppRouter = () => {
           />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/cart' element={<Cart />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </MainLayout>

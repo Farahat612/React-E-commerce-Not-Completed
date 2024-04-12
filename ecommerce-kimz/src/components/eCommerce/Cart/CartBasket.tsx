@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-
+import { useNavigate } from 'react-router-dom'
 import CartIcon from '@assets/svg/cart.svg?react'
 
 // redux
@@ -27,8 +27,13 @@ const Cart = () => {
     return () => clearTimeout(debounce)
   }, [cartQty])
 
+  const navigate = useNavigate()
+  const handleCartClick = () => {
+    navigate('/cart')
+  }
+
   return (
-    <div className={cartContainer}>
+    <div className={cartContainer} onClick={handleCartClick}>
       <div className={cart}>
         <CartIcon title='cart-icon' />
         <div className={quantityStyle}> {cartQty} </div>
