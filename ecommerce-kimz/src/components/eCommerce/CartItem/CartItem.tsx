@@ -1,8 +1,8 @@
 // styles
 import styles from './styles.module.css'
-const { cartItem, product, productImg, productInfo } = styles
+const { cartItem, product, productImg, productInfo, cartItemSelection } = styles
 // Bootstrap Components
-import { Button } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
 
 const CartItem = () => {
   const removeItemHandler = (id: string) => {
@@ -31,6 +31,16 @@ const CartItem = () => {
             Remove
           </Button>
         </div>
+      </div>
+      <div className={cartItemSelection}>
+        <span className='d-block mb-1'>Quantity</span>
+        <Form.Select aria-label='Default select example'>
+          <option value='1'>1</option>
+          <option value='2'>2</option>
+          <option value='3'>3</option>
+          <option value='4'>4</option>
+          <option value='5'>5</option>
+        </Form.Select>
       </div>
     </div>
   )

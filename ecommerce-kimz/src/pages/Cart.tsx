@@ -1,5 +1,5 @@
 import { Heading } from '@componentsshared'
-import { CartItem } from '@componentseCommerce'
+import { CartItem, CartSubTotal } from '@componentseCommerce'
 
 const Cart = () => {
   return (
@@ -8,9 +8,8 @@ const Cart = () => {
       <CartItem />
       <CartItem />
       <CartItem />
-      <CartItem />
-      <CartItem />
-      <CartItem />
+
+      <CartSubTotal />
     </div>
   )
 }
