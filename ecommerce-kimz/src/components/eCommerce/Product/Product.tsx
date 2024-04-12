@@ -36,7 +36,6 @@ const Product = memo(({ id, title, price, img, max, quantity }: IProduct) => {
   const addToCartHandler = () => {
     dispatch(addToCart(id))
     setIsBtnDisabled(true)
-    console.log(max, quantity, currentRemainingQuantity)
   }
 
   return (

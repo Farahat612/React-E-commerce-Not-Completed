@@ -1,16 +1,44 @@
+// react imports
+import { useEffect } from 'react'
+// redux imports
+import { useAppSelector, useAppDispatch } from '@storehooks'
+import { getProductsInfo } from '@storecart/cartSlice'
+// Components
 import { Heading } from '@componentsshared'
-import { CartItem, CartSubTotal } from '@componentseCommerce'
+import { CartSubTotal } from '@componentseCommerce'
+import { Loading } from '@componentsfeedback'
 
 const Cart = () => {
-  return (
-    <div>
-      <Heading>Cart</Heading>
-      <CartItem />
-      <CartItem />
-      <CartItem />
+  const dispatch = useAppDispatch()
+  const { items, productsFullInfo, loading, error } = useAppSelector(
+    (state) => state.cart
+  )
+  useEffect(() => {
+    dispatch(getProductsInfo())
+  }, [dispatch])
 
-      <CartSubTotal />
-    </div>
+  const products = productsFullInfo.map((el) => ({
+    ...el,
+    quantity: items[el.id],
+  }))
+
+  return (
+    <>
+      <Heading>Your Cart</Heading>
+      <Loading loading={loading} error={error}>
+        {products.length ? (
+          <>
+            {products.map((product) => (
+              <h1 key={product.id}>{product.title}</h1>
+            ))}
+
+            <CartSubTotal />
+          </>
+        ) : (
+          'Your Cart is empty'
+        )}
+      </Loading>
+    </>
   )
 }
 
