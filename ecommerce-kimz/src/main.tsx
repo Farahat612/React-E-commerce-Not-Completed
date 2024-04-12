@@ -9,6 +9,8 @@ import { Provider } from 'react-redux'
 import { store, persistor } from '@storestore'
 // redux persist
 import { PersistGate } from 'redux-persist/integration/react'
+// axios
+import '@services/axios-global'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
