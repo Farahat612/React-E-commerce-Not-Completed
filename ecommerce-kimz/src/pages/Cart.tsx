@@ -52,7 +52,7 @@ const Cart = () => {
               removeItemHandler={removeItemHandler}
             />
 
-            <CartSubTotal />
+            <CartSubTotal products={products} />
           </>
         ) : (
           'Your Cart is empty'
