@@ -47,7 +47,7 @@ const CartItem = ({
         </div>
         <div className={productInfo}>
           <h2>{title}</h2>
-          <h3>{(+price).toFixed(2)} EGP</h3>
+          <h3>{price.toFixed(2)} EGP</h3>
           <Button
             variant='secondary'
             style={{ color: 'white', width: '100px' }}

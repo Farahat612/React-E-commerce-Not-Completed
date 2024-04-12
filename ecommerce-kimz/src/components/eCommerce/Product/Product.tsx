@@ -44,7 +44,7 @@ const Product = memo(({ id, title, price, img, max, quantity }: IProduct) => {
         <img src={img} alt={title} />
       </div>
       <h2>{title}</h2>
-      <h3>{(+price).toFixed(2)} EGP</h3>
+      <h3>{price.toFixed(2)} EGP</h3>
       <p className={maximumNotice}>
         {quantityReachedToMax
           ? 'You reach to the limit'
