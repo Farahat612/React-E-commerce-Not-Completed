@@ -1,8 +1,12 @@
 // react imports
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 // redux imports
 import { useAppSelector, useAppDispatch } from '@storehooks'
-import { getProductsInfo } from '@storecart/cartSlice'
+import {
+  getProductsInfo,
+  itemQtyChange,
+  removeFromCart,
+} from '@storecart/cartSlice'
 // Components
 import { Heading } from '@componentsshared'
 import { CartSubTotal, CartItemList } from '@componentseCommerce'
@@ -22,13 +26,19 @@ const Cart = () => {
     quantity: items[el.id],
   }))
 
-  const changeQuantityHandler = (id: number, quantity: number) => {
-    console.log(id, quantity)
-  }
+  const changeQuantityHandler = useCallback(
+    (id: number, quantity: number) => {
+      dispatch(itemQtyChange({ id, quantity }))
+    },
+    [dispatch]
+  )
 
-  const removeItemHandler = (id: number) => {
-    console.log(id)
-  }
+  const removeItemHandler = useCallback(
+    (id: number) => {
+      dispatch(removeFromCart(id))
+    },
+    [dispatch]
+  )
 
   return (
     <>

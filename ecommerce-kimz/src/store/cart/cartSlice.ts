@@ -3,6 +3,10 @@ import { IProduct } from '@customTypesproduct'
 import { TLoading } from '@customTypesshared'
 
 import getProductsInfo from './actions/getProductsInfo'
+import {
+  getCartTotalQuantitySelector,
+  itemQuantityAvailabilityCheckingSelector,
+} from './selectors/cartSelectors'
 
 // Defining a type for the slice state
 interface ICartState {
@@ -33,6 +37,17 @@ const cartSlice = createSlice({
         state.items[id] = 1
       }
     },
+    itemQtyChange(state, action) {
+      const { id, quantity } = action.payload
+      state.items[id] = quantity
+    },
+    removeFromCart(state, action) {
+      const id = action.payload
+      delete state.items[id] // Removing the item from the cart
+      state.productsFullInfo = state.productsFullInfo.filter(
+        (product) => product.id !== id
+      ) // Removing the item from the productsFullInfo
+    },
   },
   extraReducers: (builder) => {
     // Handling the getProductsInfo thunk actions
@@ -53,8 +68,12 @@ const cartSlice = createSlice({
 })
 
 // Exporting the actions
-export const { addToCart } = cartSlice.actions
-// Exporting async thunks
-export { getProductsInfo }
+export const { addToCart, itemQtyChange, removeFromCart } = cartSlice.actions
+// Exporting async thunk and selectors
+export {
+  getProductsInfo,
+  getCartTotalQuantitySelector,
+  itemQuantityAvailabilityCheckingSelector,
+}
 // Exporting the reducer
 export default cartSlice.reducer
