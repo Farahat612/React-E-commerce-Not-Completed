@@ -29,7 +29,7 @@ const Categories = () => {
   // displaying the categories
   return (
     <>
-      <Heading>Categories</Heading>
+      <Heading title='Categories' />
       <Loading loading={loading} error={error}>
         <GridList<ICategory>
           records={records}

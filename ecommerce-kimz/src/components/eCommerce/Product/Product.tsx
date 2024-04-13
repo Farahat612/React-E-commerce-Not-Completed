@@ -15,6 +15,7 @@ import HeartFill from '@assetssvg/heart-fill.svg?react'
 
 const Product = memo(
   ({ id, title, price, img, max, quantity, isLiked }: IProduct) => {
+    // console.log('Product rendered')
     // initializing the dispatch
     const dispatch = useAppDispatch()
 

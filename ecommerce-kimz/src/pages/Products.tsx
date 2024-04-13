@@ -34,14 +34,10 @@ const Products = () => {
     isLiked: wishlistItems.includes(el.id),
   }))
 
-
   // Displaying the products
   return (
     <>
-      <Heading>
-        {' '}
-        <span className='text-capitalize'>{params.prefix}</span> Products
-      </Heading>
+      <Heading title={`${params.prefix?.toUpperCase()} Products`} />
       <Loading loading={loading} error={error}>
         <GridList<IProduct>
           records={productsFullInfo}

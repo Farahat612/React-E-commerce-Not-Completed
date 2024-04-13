@@ -42,7 +42,7 @@ const WishList = () => {
 
   return (
     <>
-      <Heading>Your Wishlist</Heading>
+      <Heading title='Your Wishlist' />
       <Loading loading={loading} error={error}>
         {records.length > 0 ? (
           <GridList<IProduct>
