@@ -17,6 +17,7 @@ import {
 import categoriesReducer from './categories/categoriesSlice'
 import productsReducer from '@storeproducts/productsSlice'
 import cartReducer from '@storecart/cartSlice'
+import wishlistReducer from '@storewishlist/wishlistSlice'
 
 const rootPersistConfig = {
   key: 'root',
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   categories: categoriesReducer,
   products: productsReducer,
   cart: cartReducer,
+  wishlist: wishlistReducer,
 })
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
