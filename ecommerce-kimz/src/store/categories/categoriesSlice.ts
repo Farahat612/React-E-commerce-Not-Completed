@@ -23,7 +23,11 @@ const initialState: ICategoriesState = {
 const categoriesSlice = createSlice({
   name: 'categories',
   initialState,
-  reducers: {},
+  reducers: {
+    categoriesCleanUp: (state) => {
+      state.records = []
+    },
+  },
   extraReducers: (builder) => {
     // Handling the getCategories.pending action
     builder.addCase(getCategories.pending, (state) => {
@@ -46,5 +50,7 @@ const categoriesSlice = createSlice({
 
 // Exporting the getCategories thunk
 export { getCategories }
+// Exporting the actions
+export const { categoriesCleanUp } = categoriesSlice.actions
 // Exporting the reducer
 export default categoriesSlice.reducer

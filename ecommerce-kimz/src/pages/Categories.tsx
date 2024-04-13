@@ -5,7 +5,10 @@ import { GridList, Heading } from '@componentsshared'
 
 // Redux
 import { useAppDispatch, useAppSelector } from '@store/hooks'
-import { getCategories } from '@store/categories/categoriesSlice'
+import {
+  getCategories,
+  categoriesCleanUp,
+} from '@store/categories/categoriesSlice'
 import { useEffect } from 'react'
 // Types
 import { ICategory } from '@customTypescategory'
@@ -17,10 +20,11 @@ const Categories = () => {
   )
 
   useEffect(() => {
-    if (!records.length) {
-      dispatch(getCategories())
+    dispatch(getCategories())
+    return () => {
+      dispatch(categoriesCleanUp())
     }
-  }, [dispatch, records])
+  }, [dispatch])
 
   // displaying the categories
   return (

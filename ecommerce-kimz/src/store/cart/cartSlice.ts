@@ -48,6 +48,9 @@ const cartSlice = createSlice({
         (product) => product.id !== id
       ) // Removing the item from the productsFullInfo
     },
+    cleanCartProductsFullInfo(state) {
+      state.productsFullInfo = []
+    },
   },
   extraReducers: (builder) => {
     // Handling the getProductsInfo thunk actions
@@ -68,7 +71,12 @@ const cartSlice = createSlice({
 })
 
 // Exporting the actions
-export const { addToCart, itemQtyChange, removeFromCart } = cartSlice.actions
+export const {
+  addToCart,
+  itemQtyChange,
+  removeFromCart,
+  cleanCartProductsFullInfo,
+} = cartSlice.actions
 // Exporting async thunk and selectors
 export {
   getProductsInfo,

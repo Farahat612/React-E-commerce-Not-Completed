@@ -6,6 +6,7 @@ import {
   getProductsInfo,
   itemQtyChange,
   removeFromCart,
+  cleanCartProductsFullInfo,
 } from '@storecart/cartSlice'
 // Components
 import { Heading } from '@componentsshared'
@@ -19,6 +20,9 @@ const Cart = () => {
   )
   useEffect(() => {
     dispatch(getProductsInfo())
+    return () => {
+      dispatch(cleanCartProductsFullInfo())
+    }
   }, [dispatch])
 
   const products = productsFullInfo.map((el) => ({

@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@storehooks'
 import {
   getWishlist,
-  productsFullInfoCleanUp,
+  wishListProductsFullInfoCleanUp,
 } from '@storewishlist/wishlistSlice'
 // components
 import { Heading, GridList } from '@componentsshared'
@@ -29,7 +29,7 @@ const WishList = () => {
   useEffect(() => {
     dispatch(getWishlist())
     return () => {
-      dispatch(productsFullInfoCleanUp())
+      dispatch(wishListProductsFullInfoCleanUp())
     }
   }, [dispatch])
 
