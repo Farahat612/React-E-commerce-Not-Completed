@@ -6,5 +6,16 @@ import Login from './Login'
 import Register from './Register'
 import NotFound from './NotFound'
 import Cart from './Cart'
+import WishList from './WishList'
 
-export { Home, About, Categories, Products, Login, Register, NotFound, Cart }
+export {
+  Home,
+  About,
+  Categories,
+  Products,
+  Login,
+  Register,
+  NotFound,
+  Cart,
+  WishList,
+}

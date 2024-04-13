@@ -27,12 +27,12 @@ const WishList = () => {
   }, [totalQuantity])
 
   const navigate = useNavigate()
-  const handleCartClick = () => {
-    navigate('/cart')
+  const handleIconClick = () => {
+    navigate('/wishlist')
   }
 
   return (
-    <div className={container} onClick={handleCartClick}>
+    <div className={container} onClick={handleIconClick}>
       <div className={iconWrapper}>
         <WishListIcon title='wishlist-icon' />
         {totalQuantity > 0 && (

@@ -5,6 +5,7 @@ import { TLoading } from '@customTypesshared'
 import { IProduct } from '@customTypesproduct'
 // actions
 import likeToggle from './actions/likeToggle'
+import getWishlist from './actions/getWishlist'
 
 // Defining the type of the state
 interface IWishlistState {
@@ -26,7 +27,11 @@ const initialState: IWishlistState = {
 const wishlistSlice = createSlice({
   name: 'wishlist',
   initialState,
-  reducers: {},
+  reducers: {
+    productsFullInfoCleanUp: (state) => {
+      state.productsFullInfo = []
+    },
+  },
   extraReducers: (builder) => {
     // Handling the pending, fulfilled, and rejected states of the likeToggle action
     builder.addCase(likeToggle.pending, (state) => {
@@ -47,11 +52,25 @@ const wishlistSlice = createSlice({
     builder.addCase(likeToggle.rejected, (state, { payload }) => {
       state.error = payload as string
     })
+    // Handling the pending, fulfilled, and rejected states of the getWishlist action
+    builder.addCase(getWishlist.pending, (state) => {
+      state.error = null
+      state.loading = 'pending'
+    })
+    builder.addCase(getWishlist.fulfilled, (state, { payload }) => {
+      state.productsFullInfo = payload
+      state.loading = 'succeeded'
+    })
+    builder.addCase(getWishlist.rejected, (state, { payload }) => {
+      state.error = payload as string
+      state.loading = 'failed'
+    })
   },
 })
 
 // exporting Thunks
-export { likeToggle }
-
+export { likeToggle, getWishlist }
+// exporting the action creator
+export const { productsFullInfoCleanUp } = wishlistSlice.actions
 // exporting the reducer
 export default wishlistSlice.reducer
