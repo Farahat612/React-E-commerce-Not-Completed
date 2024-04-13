@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import WishListIcon from '@assets/svg/wishlist.svg?react'
 
 // redux
-// import { useAppSelector } from '@storehooks'
-// import { getCartTotalQuantitySelector } from '@storecart/selectors/cartSelectors'
+import { useAppSelector } from '@storehooks'
 
 import styles from './styles.module.css'
 const { container, totalNum, pumpAnimate, iconWrapper } = styles
 
 const WishList = () => {
-  const totalQuantity = 0 //useAppSelector(getCartTotalQuantitySelector)
+  const totalQuantity = useAppSelector((state) => state.wishlist.itemsId.length)
 
   const [isAnimate, setIsAnimate] = useState(false)
   const quantityStyle = `${totalNum} ${isAnimate ? pumpAnimate : ''}`

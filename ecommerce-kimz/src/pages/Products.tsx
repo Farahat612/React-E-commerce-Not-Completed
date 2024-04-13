@@ -9,7 +9,7 @@ import { getProducts, productsCleanUp } from '@store/products/productsSlice'
 import { useEffect } from 'react'
 // importing useParams
 import { useParams } from 'react-router-dom'
-
+// types
 import { IProduct } from '@customTypesproduct'
 
 const Products = () => {
@@ -26,10 +26,14 @@ const Products = () => {
 
   // Getting the cart items from the store
   const cartItems = useAppSelector((state) => state.cart.items)
+  // Getting the wishlist items from the store
+  const wishlistItems = useAppSelector((state) => state.wishlist.itemsId)
   const productsFullInfo = records.map((el) => ({
     ...el,
     quantity: cartItems[el.id] || 0,
+    isLiked: wishlistItems.includes(el.id),
   }))
+
 
   // Displaying the products
   return (

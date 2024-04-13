@@ -19,23 +19,29 @@ import productsReducer from '@storeproducts/productsSlice'
 import cartReducer from '@storecart/cartSlice'
 import wishlistReducer from '@storewishlist/wishlistSlice'
 
-const rootPersistConfig = {
-  key: 'root',
+const cartPersistConfig = {
+  key: 'cart',
   storage,
-  whitelist: ['cart'],
+  whitelist: ['items'],
+}
+
+const wishlistPersistConfig = {
+  key: 'wishlist',
+  storage,
+  whitelist: ['itemsId'],
 }
 
 const rootReducer = combineReducers({
   categories: categoriesReducer,
   products: productsReducer,
-  cart: cartReducer,
-  wishlist: wishlistReducer,
+  cart: persistReducer(cartPersistConfig, cartReducer),
+  wishlist: persistReducer(wishlistPersistConfig, wishlistReducer),
 })
 
-const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
+// const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
 
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
   // solving the non-serializable value cosole warning issue
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
