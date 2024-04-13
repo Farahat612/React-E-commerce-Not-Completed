@@ -25,3 +25,8 @@
 .headerLogo h1 .left {
   color: #111 !important;
 }
+
+.headerIcons {
+  display: flex;
+  flex-direction: row;
+}

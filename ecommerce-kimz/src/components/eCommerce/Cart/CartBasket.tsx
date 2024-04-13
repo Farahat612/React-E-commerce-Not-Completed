@@ -36,7 +36,7 @@ const Cart = () => {
     <div className={cartContainer} onClick={handleCartClick}>
       <div className={cart}>
         <CartIcon title='cart-icon' />
-        <div className={quantityStyle}> {cartQty} </div>
+        {cartQty > 0 && <div className={quantityStyle}> {cartQty} </div>}
       </div>
       <h3>Cart</h3>
     </div>

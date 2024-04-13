@@ -1,6 +1,6 @@
 import { Button, Spinner } from 'react-bootstrap'
 import styles from './styles.module.css'
-const { product, productImg, maximumNotice } = styles
+const { product, productImg, maximumNotice, wishlistBtn } = styles
 // importing types
 import { IProduct } from '@customTypes/product'
 // redux
@@ -8,6 +8,9 @@ import { useAppDispatch } from '@storehooks'
 import { addToCart } from '@storecart/cartSlice'
 // react hooks
 import { useEffect, useState, memo } from 'react'
+// Icons
+import Heart from '@assetssvg/heart.svg?react'
+// import heartFill from '@assetssvg/heart-fill.svg?react'
 
 const Product = memo(({ id, title, price, img, max, quantity }: IProduct) => {
   // initializing the dispatch
@@ -40,6 +43,9 @@ const Product = memo(({ id, title, price, img, max, quantity }: IProduct) => {
 
   return (
     <div className={product}>
+      <div className={wishlistBtn}>
+        <Heart />
+      </div>
       <div className={productImg}>
         <img src={img} alt={title} />
       </div>
