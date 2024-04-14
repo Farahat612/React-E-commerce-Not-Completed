@@ -1,8 +1,13 @@
+// third party imports
 import { NavLink } from 'react-router-dom'
-import { Cart, WishList } from '@components/eCommerce'
-import styles from './styles.module.css'
-const { headerContainer, headerLogo, headerIcons } = styles
 import { Badge, Navbar, Nav, Container } from 'react-bootstrap'
+
+// components
+import HeaderRightBar from './HeaderRightBar/HeaderRightBar'
+
+// styles
+import styles from './styles.module.css'
+const { headerContainer, headerLogo } = styles
 
 const Header = () => {
   return (
@@ -14,10 +19,7 @@ const Header = () => {
           </Badge>
           <Badge bg='info'>SHOP</Badge>
         </h1>
-        <div className={headerIcons}>
-          <WishList />
-          <Cart />
-        </div>
+        <HeaderRightBar />
       </div>
 
       <Navbar

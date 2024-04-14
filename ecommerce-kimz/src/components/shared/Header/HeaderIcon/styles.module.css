@@ -1,10 +1,22 @@
-.cartContainer {
-  position: relative;
-  cursor: pointer;
+.container {
   align-self: flex-end;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.cartQuantity {
+.container h3 {
+  font-size: 17px;
+  margin: 5px 0 0 1px;
+}
+
+.iconWrapper {
+  position: relative;
+}
+
+.totalNum {
   background-color: #ffd67f;
   height: 18px;
   width: 18px;
@@ -16,16 +28,7 @@
   font-size: 12px;
 }
 
-.cart {
-  position: relative;
-}
-
-.cartContainer h3 {
-  font-size: 17px;
-  margin: 5px 0 0 1px;
-}
-
-.pumpCartQuantity {
+.pumpAnimate {
   animation: pumping 300ms ease-out;
 }
 
