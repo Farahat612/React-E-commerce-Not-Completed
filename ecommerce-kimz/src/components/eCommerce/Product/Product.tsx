@@ -4,9 +4,9 @@ const { product, productImg, maximumNotice, wishlistBtn } = styles
 // importing types
 import { IProduct } from '@customTypes/product'
 // redux
-import { useAppDispatch } from '@storehooks'
-import { addToCart } from '@storecart/cartSlice'
-import { likeToggle } from '@storewishlist/wishlistSlice'
+import { useAppDispatch } from '@store/hooks'
+import { addToCart } from '@store/cart/cartSlice'
+import { likeToggle } from '@store/wishlist/wishlistSlice'
 // react hooks
 import { useEffect, useState, memo } from 'react'
 // Icons

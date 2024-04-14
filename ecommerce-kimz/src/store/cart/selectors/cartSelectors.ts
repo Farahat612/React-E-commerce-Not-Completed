@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { RootState } from '@storestore'
+import { RootState } from '@store/store'
 
 const getCartTotalQuantitySelector = createSelector(
   (state: RootState) => state.cart.items,

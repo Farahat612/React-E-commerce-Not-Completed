@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client'
 import AppRouter from '@routes/AppRouter'
 // styles
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './styles/global.css'
+import '@styles/global.css'
 // redux
 import { Provider } from 'react-redux'
-import { store, persistor } from '@storestore'
+import { store, persistor } from '@store/store'
 // redux persist
 import { PersistGate } from 'redux-persist/integration/react'
 // axios

@@ -1,11 +1,11 @@
 // react
 import { useEffect } from 'react'
 // redux
-import { useAppDispatch, useAppSelector } from '@storehooks'
+import { useAppDispatch, useAppSelector } from '@store/hooks'
 import {
   getWishlist,
   wishListProductsFullInfoCleanUp,
-} from '@storewishlist/wishlistSlice'
+} from '@store/wishlist/wishlistSlice'
 
 // define the useWishlist hook
 const useWishlist = () => {

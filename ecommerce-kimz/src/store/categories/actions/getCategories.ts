@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 // importing the type of the response data
-import { ICategory } from '@customTypescategory'
-import { axiosErrorHandler } from '@utilsindex'
+import { ICategory } from '@customTypes/category'
+import { axiosErrorHandler } from '@utils/index'
 
 // Defining the type of the response data
 type TResponse = ICategory[]

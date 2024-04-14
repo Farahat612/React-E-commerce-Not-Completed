@@ -4,8 +4,8 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 // redux
-import { useAppDispatch, useAppSelector } from '@storehooks'
-import { getProducts, productsCleanUp } from '@storeproducts/productsSlice'
+import { useAppDispatch, useAppSelector } from '@store/hooks'
+import { getProducts, productsCleanUp } from '@store/products/productsSlice'
 
 // Defining the useProducts hook
 const useProducts = () => {

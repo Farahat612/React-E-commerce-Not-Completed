@@ -1,7 +1,7 @@
 // styles
 import styles from './styles.module.css'
 // types
-import { IProduct } from '@customTypesproduct'
+import { IProduct } from '@customTypes/product'
 
 // Defining the props type
 type CartSubTotalProps = {

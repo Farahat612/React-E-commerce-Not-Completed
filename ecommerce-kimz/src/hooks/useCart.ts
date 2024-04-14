@@ -1,13 +1,13 @@
 // react hooks
 import { useEffect, useCallback } from 'react'
 // redux
-import { useAppSelector, useAppDispatch } from '@storehooks'
+import { useAppSelector, useAppDispatch } from '@store/hooks'
 import {
   getProductsInfo,
   itemQtyChange,
   removeFromCart,
   cleanCartProductsFullInfo,
-} from '@storecart/cartSlice'
+} from '@store/cart/cartSlice'
 
 // define the useCart hook
 const useCart = () => {

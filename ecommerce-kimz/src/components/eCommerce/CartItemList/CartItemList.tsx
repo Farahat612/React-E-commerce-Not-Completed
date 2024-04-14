@@ -1,5 +1,5 @@
 import CartItem from '../CartItem/CartItem'
-import { IProduct } from '@customTypesproduct'
+import { IProduct } from '@customTypes/product'
 
 // Defining the props type
 type CartItemListProps = {

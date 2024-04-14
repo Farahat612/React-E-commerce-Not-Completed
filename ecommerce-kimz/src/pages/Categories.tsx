@@ -1,11 +1,11 @@
 // Custom hooks
-import useCategories from '@hooksuseCategories'
+import useCategories from '@hooks/useCategories'
 // Components
-import { Category } from '@components/eCommerce'
-import { Loading } from '@componentsfeedback'
-import { GridList, Heading } from '@componentsshared'
+import { Category } from '@components/eCommerce/index'
+import { Loading } from '@components/feedback'
+import { GridList, Heading } from '@components/shared/index'
 // Types
-import { ICategory } from '@customTypescategory'
+import { ICategory } from '@customTypes/category'
 
 const Categories = () => {
   // Getting the categories

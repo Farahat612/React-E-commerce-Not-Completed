@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 // importing getProducts thunk
 import getProducts from './actions/getProducts'
 // Importing the types
-import { IProduct } from '@customTypesproduct'
-import { TLoading } from '@customTypesshared'
+import { IProduct } from '@customTypes/product'
+import { TLoading } from '@customTypes/shared'
 
 // Defining types for the state
 export interface ICategoriesState {

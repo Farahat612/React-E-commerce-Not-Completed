@@ -1,13 +1,13 @@
 // custom hook
-import useWishlist from '@hooksuseWishlist'
+import useWishlist from '@hooks/useWishlist'
 
 // components
-import { Heading, GridList } from '@componentsshared'
-import { Product } from '@componentseCommerce'
-import { Loading } from '@componentsfeedback'
+import { Heading, GridList } from '@components/shared/index'
+import { Product } from '@components/eCommerce/index'
+import { Loading } from '@components/feedback/index'
 // types
 
-import { IProduct } from '@customTypesproduct'
+import { IProduct } from '@customTypes/product'
 
 const WishList = () => {
   // use the custom hook

@@ -15,9 +15,9 @@ import {
 } from 'redux-persist'
 
 import categoriesReducer from './categories/categoriesSlice'
-import productsReducer from '@storeproducts/productsSlice'
-import cartReducer from '@storecart/cartSlice'
-import wishlistReducer from '@storewishlist/wishlistSlice'
+import productsReducer from '@store/products/productsSlice'
+import cartReducer from '@store/cart/cartSlice'
+import wishlistReducer from '@store/wishlist/wishlistSlice'
 
 const cartPersistConfig = {
   key: 'cart',

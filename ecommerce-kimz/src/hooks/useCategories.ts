@@ -1,11 +1,11 @@
 // react hooks
 import { useEffect } from 'react'
 // redux
-import { useAppDispatch, useAppSelector } from '@storehooks'
+import { useAppDispatch, useAppSelector } from '@store/hooks'
 import {
   getCategories,
   categoriesCleanUp,
-} from '@storecategories/categoriesSlice'
+} from '@store/categories/categoriesSlice'
 
 // Defining the useCategories hook
 const useCategories = () => {

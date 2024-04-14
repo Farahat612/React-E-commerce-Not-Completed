@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { axiosErrorHandler } from '@utilsindex'
+import { axiosErrorHandler } from '@utils/index'
 
 const likeToggle = createAsyncThunk(
   'wishlist/likeToggle',

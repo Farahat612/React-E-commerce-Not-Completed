@@ -1,8 +1,8 @@
 // redux toolkit
 import { createSlice } from '@reduxjs/toolkit'
 // types
-import { TLoading } from '@customTypesshared'
-import { IProduct } from '@customTypesproduct'
+import { TLoading } from '@customTypes/shared'
+import { IProduct } from '@customTypes/product'
 // actions
 import likeToggle from './actions/likeToggle'
 import getWishlist from './actions/getWishlist'

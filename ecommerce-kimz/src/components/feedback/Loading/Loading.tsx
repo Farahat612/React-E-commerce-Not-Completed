@@ -1,5 +1,5 @@
 // importing TLoading customType
-import { TLoading } from '@customTypesshared'
+import { TLoading } from '@customTypes/shared'
 
 // defining type of props
 interface LoadingProps {

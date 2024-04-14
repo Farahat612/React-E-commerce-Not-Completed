@@ -1,6 +1,6 @@
 // redux
-import { useAppSelector } from '@storehooks'
-import { getCartTotalQuantitySelector } from '@storecart/cartSlice'
+import { useAppSelector } from '@store/hooks'
+import { getCartTotalQuantitySelector } from '@store/cart/cartSlice'
 
 // components
 import HeaderIcon from '../HeaderIcon/HeaderIcon'

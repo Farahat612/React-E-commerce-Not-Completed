@@ -4,7 +4,7 @@ import styles from './styles.module.css'
 const { category, categoryImg, categoryTitle } = styles
 
 // importing the types
-import { ICategory } from '@customTypescategory'
+import { ICategory } from '@customTypes/category'
 
 const Category = ({ title, img, prefix }: ICategory) => {
   return (

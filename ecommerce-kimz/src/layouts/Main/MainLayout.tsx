@@ -1,5 +1,5 @@
 import { Container } from 'react-bootstrap'
-import { Header, Footer } from '@components/shared'
+import { Header, Footer } from '@components/shared/index'
 import styles from './styles.module.css'
 const { container, wrapper } = styles
 

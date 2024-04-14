@@ -4,7 +4,7 @@ const { cartItem, product, productImg, productInfo, cartItemSelection } = styles
 // Bootstrap Components
 import { Button, Form } from 'react-bootstrap'
 // Types
-import { IProduct } from '@customTypesproduct'
+import { IProduct } from '@customTypes/product'
 // react imports
 import { memo } from 'react'
 

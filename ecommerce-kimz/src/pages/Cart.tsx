@@ -1,10 +1,10 @@
 // custom hook
-import useCart from '@hooksuseCart'
+import useCart from '@hooks/useCart'
 
 // Components
-import { Heading } from '@componentsshared'
-import { CartSubTotal, CartItemList } from '@componentseCommerce'
-import { Loading } from '@componentsfeedback'
+import { Heading } from '@components/shared/index'
+import { CartSubTotal, CartItemList } from '@components/eCommerce/index'
+import { Loading } from '@components/feedback/index'
 
 const Cart = () => {
   // use the custom hook

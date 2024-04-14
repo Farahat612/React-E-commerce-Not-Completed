@@ -1,12 +1,12 @@
 // custom hook
-import useProducts from '@hooksuseProducts'
+import useProducts from '@hooks/useProducts'
 
 // components
-import { Product } from '@components/eCommerce'
-import { Loading } from '@componentsfeedback'
-import { GridList, Heading } from '@componentsshared'
+import { Product } from '@components/eCommerce/index'
+import { Loading } from '@components/feedback/index'
+import { GridList, Heading } from '@components/shared/index'
 // types
-import { IProduct } from '@customTypesproduct'
+import { IProduct } from '@customTypes/product'
 
 const Products = () => {
   // Getting the products
