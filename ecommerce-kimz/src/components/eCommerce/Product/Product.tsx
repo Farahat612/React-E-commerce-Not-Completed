@@ -10,8 +10,8 @@ import { likeToggle } from '@store/wishlist/wishlistSlice'
 // react hooks
 import { useEffect, useState, memo } from 'react'
 // Icons
-import Heart from '@assetssvg/heart.svg?react'
-import HeartFill from '@assetssvg/heart-fill.svg?react'
+import Heart from '@assets/svg/heart.svg?react'
+import HeartFill from '@assets/svg/heart-fill.svg?react'
 
 const Product = memo(
   ({ id, title, price, img, max, quantity, isLiked }: IProduct) => {

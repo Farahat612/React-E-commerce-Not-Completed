@@ -4,8 +4,8 @@ import { getCartTotalQuantitySelector } from '@store/cart/cartSlice'
 
 // components
 import HeaderIcon from '../HeaderIcon/HeaderIcon'
-import WishListIcon from '@assetssvg/wishlist.svg?react'
-import CartIcon from '@assetssvg/cart.svg?react'
+import WishListIcon from '@assets/svg/wishlist.svg?react'
+import CartIcon from '@assets/svg/cart.svg?react'
 
 // styles
 import styles from './styles.module.css'
