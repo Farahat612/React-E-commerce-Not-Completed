@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { IProduct } from '@customTypesproduct'
+import { axiosErrorHandler } from '@utilsindex'
 
 type TResponse = IProduct[]
 
@@ -25,13 +26,9 @@ const getWishlist = createAsyncThunk(
       )
       return response.data
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        return rejectWithValue(error.response?.data.message || error.message)
-      } else {
-        return rejectWithValue(
-          'An unexpected error while fetching the wishlist items'
-        )
-      }
+      return rejectWithValue(
+        axiosErrorHandler(error, 'Failed to fetch wishlist')
+      )
     }
   }
 )

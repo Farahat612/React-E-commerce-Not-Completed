@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 // importing the type of the response data
 import { ICategory } from '@customTypescategory'
+import { axiosErrorHandler } from '@utilsindex'
 
 // Defining the type of the response data
 type TResponse = ICategory[]
@@ -14,13 +15,9 @@ export const getCategories = createAsyncThunk(
       const response = await axios.get<TResponse>('/categories')
       return response.data
     } catch (error) {
-      if (axios.isAxiosError(error) && error.response) {
-        return rejectWithValue(error.response.data.message || error.message)
-      } else {
-        return rejectWithValue(
-          'An unexpected error occurred while fetching the categories.'
-        )
-      }
+      return rejectWithValue(
+        axiosErrorHandler(error, 'Failed to fetch categories')
+      )
     }
   }
 )

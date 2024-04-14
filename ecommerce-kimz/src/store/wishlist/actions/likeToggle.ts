@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { axiosErrorHandler } from '@utilsindex'
 
 const likeToggle = createAsyncThunk(
   'wishlist/likeToggle',
@@ -17,11 +18,9 @@ const likeToggle = createAsyncThunk(
         return { type: 'add', id }
       }
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        return rejectWithValue(error.response?.data.message || error.message)
-      } else {
-        return rejectWithValue('An unexpected error')
-      }
+      return rejectWithValue(
+        axiosErrorHandler(error, 'Failed to toggle wishlist')
+      )
     }
   }
 )

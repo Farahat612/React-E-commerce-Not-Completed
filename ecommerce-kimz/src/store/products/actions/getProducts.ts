@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 // importing the type of the response data
 import { IProduct } from '@customTypesproduct'
+import { axiosErrorHandler } from '@utilsindex'
 
 // Defining the type of the response data
 type TResponse = IProduct[]
@@ -16,13 +17,9 @@ export const getProductsByCategoryPrefix = createAsyncThunk(
       )
       return response.data
     } catch (error) {
-      if (axios.isAxiosError(error) && error.response) {
-        return rejectWithValue(error.response.data.message || error.message)
-      } else {
-        return rejectWithValue(
-          'An unexpected error occurred while fetching the product.'
-        )
-      }
+      return rejectWithValue(
+        axiosErrorHandler(error, 'Failed to fetch products')
+      )
     }
   }
 )
