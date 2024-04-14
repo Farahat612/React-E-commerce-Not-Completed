@@ -6,7 +6,7 @@ import { Product } from '@components/eCommerce/index'
 import { Loading } from '@components/feedback/index'
 import { GridList, Heading } from '@components/shared/index'
 // types
-import { IProduct } from '@customTypes/product'
+import { IProduct } from '@types'
 
 const Products = () => {
   // Getting the products

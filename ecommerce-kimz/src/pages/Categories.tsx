@@ -5,7 +5,7 @@ import { Category } from '@components/eCommerce/index'
 import { Loading } from '@components/feedback'
 import { GridList, Heading } from '@components/shared/index'
 // Types
-import { ICategory } from '@customTypes/category'
+import { ICategory } from '@types'
 
 const Categories = () => {
   // Getting the categories

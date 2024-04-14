@@ -7,7 +7,7 @@ import { Product } from '@components/eCommerce/index'
 import { Loading } from '@components/feedback/index'
 // types
 
-import { IProduct } from '@customTypes/product'
+import { IProduct } from '@types'
 
 const WishList = () => {
   // use the custom hook

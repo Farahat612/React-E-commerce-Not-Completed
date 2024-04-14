@@ -2,7 +2,7 @@ import { Button, Spinner } from 'react-bootstrap'
 import styles from './styles.module.css'
 const { product, productImg, maximumNotice, wishlistBtn } = styles
 // importing types
-import { IProduct } from '@customTypes/product'
+import { IProduct } from '@types'
 // redux
 import { useAppDispatch } from '@store/hooks'
 import { addToCart } from '@store/cart/cartSlice'

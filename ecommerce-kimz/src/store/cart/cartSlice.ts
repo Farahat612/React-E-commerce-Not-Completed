@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { IProduct } from '@customTypes/product'
-import { TLoading } from '@customTypes/shared'
+import { IProduct, TLoading } from '@types'
 
 import getProductsInfo from './actions/getProductsInfo'
 import {
