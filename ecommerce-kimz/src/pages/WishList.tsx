@@ -1,44 +1,17 @@
-// react hooks
-import { useEffect } from 'react'
-// redux
-import { useAppDispatch, useAppSelector } from '@storehooks'
-import {
-  getWishlist,
-  wishListProductsFullInfoCleanUp,
-} from '@storewishlist/wishlistSlice'
+// custom hook
+import useWishlist from '@hooksuseWishlist'
+
 // components
 import { Heading, GridList } from '@componentsshared'
 import { Product } from '@componentseCommerce'
 import { Loading } from '@componentsfeedback'
 // types
+
 import { IProduct } from '@customTypesproduct'
 
 const WishList = () => {
-  // initializing the dispatch
-  const dispatch = useAppDispatch()
-
-  // getting the wishlist state
-  const { productsFullInfo, loading, error } = useAppSelector(
-    (state) => state.wishlist
-  )
-
-  // getting cart items to show the quantity available of the product in the wishlist
-  const cartItems = useAppSelector((state) => state.cart.items)
-
-  // fetching the wishlist
-  useEffect(() => {
-    dispatch(getWishlist())
-    return () => {
-      dispatch(wishListProductsFullInfoCleanUp())
-    }
-  }, [dispatch])
-
-  // defining the wishlist items
-  const records = productsFullInfo.map((el) => ({
-    ...el,
-    isLiked: true,
-    quantity: cartItems[el.id],
-  }))
+  // use the custom hook
+  const { records, loading, error } = useWishlist()
 
   return (
     <>
