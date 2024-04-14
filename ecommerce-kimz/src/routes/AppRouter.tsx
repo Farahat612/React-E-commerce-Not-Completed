@@ -1,4 +1,6 @@
-import { useEffect } from 'react'
+// react hooks
+import { useEffect, lazy, Suspense } from 'react'
+// react router dom
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,19 +9,17 @@ import {
   useNavigate,
 } from 'react-router-dom'
 // Layouts
-import { MainLayout } from '@layouts/'
+const MainLayout = lazy(() => import('@layouts/Main/MainLayout'))
 // Pages
-import {
-  Home,
-  About,
-  Categories,
-  Products,
-  Login,
-  Register,
-  NotFound,
-  Cart,
-  WishList,
-} from '@pages/'
+const Home = lazy(() => import('@pages/Home'))
+const About = lazy(() => import('@pages/About'))
+const Categories = lazy(() => import('@pages/Categories'))
+const Products = lazy(() => import('@pages/Products'))
+const Cart = lazy(() => import('@pages/Cart'))
+const WishList = lazy(() => import('@pages/WishList'))
+const Login = lazy(() => import('@pages/Login'))
+const Register = lazy(() => import('@pages/Register'))
+const NotFound = lazy(() => import('@pages/NotFound'))
 
 // Products route guard -- > Validates the category prefix in client side
 const ProductsWrapper = () => {
@@ -44,24 +44,28 @@ const ProductsWrapper = () => {
 
 const AppRouter = () => {
   return (
-    <Router>
-      <MainLayout>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/categories' element={<Categories />} />
-          <Route
-            path='categories/products/:prefix'
-            element={<ProductsWrapper />}
-          />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/wishlist' element={<WishList />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </MainLayout>
-    </Router>
+    <Suspense fallback={<h5>Loading Your page... Please Wait!</h5>}>
+      <Router>
+        <MainLayout>
+          <Suspense fallback={<h3>Loading Your page... Please Wait!</h3>}>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/categories' element={<Categories />} />
+              <Route
+                path='categories/products/:prefix'
+                element={<ProductsWrapper />}
+              />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+              <Route path='/cart' element={<Cart />} />
+              <Route path='/wishlist' element={<WishList />} />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </MainLayout>
+      </Router>
+    </Suspense>
   )
 }
 
