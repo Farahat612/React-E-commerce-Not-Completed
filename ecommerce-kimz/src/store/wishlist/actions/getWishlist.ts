@@ -7,10 +7,13 @@ type TResponse = IProduct[]
 
 const getWishlist = createAsyncThunk(
   'wishlist/getWishlist',
-  async (_, { rejectWithValue, fulfillWithValue }) => {
+  async (_, { rejectWithValue, fulfillWithValue, signal }) => {
     try {
       const userWishlist = await axios.get<{ productId: number }[]>(
-        '/wishlist?userId=1'
+        '/wishlist?userId=1',
+        {
+          signal,
+        }
       )
 
       if (!userWishlist.data.length) {

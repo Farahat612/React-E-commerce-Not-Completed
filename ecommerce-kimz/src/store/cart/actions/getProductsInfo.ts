@@ -11,7 +11,7 @@ type TResponse = IProduct[]
 export const getProductsInfo = createAsyncThunk(
   'cart/getProductsInfo',
   async (_, thunkAPI) => {
-    const { rejectWithValue, fulfillWithValue, getState } = thunkAPI
+    const { rejectWithValue, fulfillWithValue, getState, signal } = thunkAPI
     const { cart } = getState() as RootState
     const itemsId = Object.keys(cart.items)
 
@@ -21,7 +21,10 @@ export const getProductsInfo = createAsyncThunk(
     try {
       const concatenatedItemsId = itemsId.map((el) => `id=${el}`).join('&')
       const response = await axios.get<TResponse>(
-        `/products?${concatenatedItemsId}`
+        `/products?${concatenatedItemsId}`,
+        {
+          signal,
+        }
       )
       return response.data
     } catch (error) {

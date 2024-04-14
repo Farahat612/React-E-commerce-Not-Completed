@@ -18,8 +18,9 @@ const useCart = () => {
   )
   // get the products info
   useEffect(() => {
-    dispatch(getProductsInfo())
+    const promise = dispatch(getProductsInfo())
     return () => {
+      promise.abort()
       dispatch(cleanCartProductsFullInfo())
     }
   }, [dispatch])
