@@ -19,7 +19,7 @@ const Cart = lazy(() => import('@pages/Cart'))
 const WishList = lazy(() => import('@pages/WishList'))
 const Login = lazy(() => import('@pages/Login'))
 const Register = lazy(() => import('@pages/Register'))
-const NotFound = lazy(() => import('@pages/NotFound'))
+import NotFound from '@pages/NotFound'
 
 // Products route guard -- > Validates the category prefix in client side
 const ProductsWrapper = () => {

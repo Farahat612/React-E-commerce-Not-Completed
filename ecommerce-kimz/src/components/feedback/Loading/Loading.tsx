@@ -20,7 +20,7 @@ interface LoadingProps {
   loading: TLoading
   error: null | string
   children?: React.ReactNode
-  type?: keyof typeof skeletonsTypes
+  type?: keyof typeof skeletonsTypes 
 }
 
 const Loading = ({
