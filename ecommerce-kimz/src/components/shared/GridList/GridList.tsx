@@ -1,5 +1,5 @@
 import { Row, Col } from 'react-bootstrap'
-import LottieHandler from '@components/feedback/LottieHandler/LottieHandler'
+import { LottieHandler } from '@components/feedback/index'
 
 // defining types of props
 type GridListProps<T> = {
@@ -26,7 +26,7 @@ const GridList = <T extends { id?: number }>({
         </Col>
       ))
     ) : (
-      <LottieHandler type='loading' message={emptyMessage} />
+      <LottieHandler type='empty' message={emptyMessage} />
     )
   return <Row>{renderList}</Row>
 }

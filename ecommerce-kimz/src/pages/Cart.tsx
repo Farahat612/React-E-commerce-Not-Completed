@@ -5,7 +5,7 @@ import useCart from '@hooks/useCart'
 import { Heading } from '@components/shared/index'
 import { CartSubTotal, CartItemList } from '@components/eCommerce/index'
 import { Loading } from '@components/feedback/index'
-import LottieHandler from '@components/feedback/LottieHandler/LottieHandler'
+import { LottieHandler } from '@components/feedback/index'
 
 const Cart = () => {
   // use the custom hook

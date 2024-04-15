@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom'
 // Layouts
 const MainLayout = lazy(() => import('@layouts/Main/MainLayout'))
+//
 // Pages
 const Home = lazy(() => import('@pages/Home'))
 const About = lazy(() => import('@pages/About'))
@@ -20,6 +21,7 @@ const WishList = lazy(() => import('@pages/WishList'))
 const Login = lazy(() => import('@pages/Login'))
 const Register = lazy(() => import('@pages/Register'))
 import NotFound from '@pages/NotFound'
+import { PageSuspenseFallback } from '@components/feedback/index'
 
 // Products route guard -- > Validates the category prefix in client side
 const ProductsWrapper = () => {
@@ -44,10 +46,16 @@ const ProductsWrapper = () => {
 
 const AppRouter = () => {
   return (
-    <Suspense fallback={<h5>Loading Your page... Please Wait!</h5>}>
+    <Suspense
+      fallback={
+        <div className='d-flex flex-column align-items-center'>
+          <h5 style={{ marginTop: '20%' }}>Loading please wait...</h5>
+        </div>
+      }
+    >
       <Router>
         <MainLayout>
-          <Suspense fallback={<h3>Loading Your page... Please Wait!</h3>}>
+          <PageSuspenseFallback>
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/about' element={<About />} />
@@ -62,7 +70,7 @@ const AppRouter = () => {
               <Route path='/wishlist' element={<WishList />} />
               <Route path='*' element={<NotFound />} />
             </Routes>
-          </Suspense>
+          </PageSuspenseFallback>
         </MainLayout>
       </Router>
     </Suspense>

@@ -9,7 +9,7 @@ import {
 import { TLoading } from '@types'
 
 // importing LottieHandler
-import LottieHandler from '@components/feedback/LottieHandler/LottieHandler'
+import { LottieHandler } from '@components/feedback/index'
 
 // defining cases of skeletons
 const skeletonsTypes = {
@@ -23,7 +23,7 @@ interface LoadingProps {
   loading: TLoading
   error: null | string
   children?: React.ReactNode
-  type?: keyof typeof skeletonsTypes 
+  type?: keyof typeof skeletonsTypes
 }
 
 const Loading = ({
