@@ -7,7 +7,7 @@ const { wrapper, left, right, linkStyle } = styles
 import ImgSvg from '@assets/svg/404.svg'
 import Button from 'react-bootstrap/Button'
 // lottieHandler
-import LottieHandler from '@components/feedback/LottieHandler/LottieHandler'
+// import LottieHandler from '@components/feedback/LottieHandler/LottieHandler'
 
 const NotFound = () => {
   const location = useLocation()
@@ -19,7 +19,7 @@ const NotFound = () => {
     <div className={wrapper}>
       <div className={left}>
         <h1> I have bad news for you</h1>
-        <LottieHandler type='error'/>
+        {/* <LottieHandler type='error'/> */}
         <p>{message}</p>
         <Button variant='info'>
           <Link className={linkStyle} to='/' replace={true}>

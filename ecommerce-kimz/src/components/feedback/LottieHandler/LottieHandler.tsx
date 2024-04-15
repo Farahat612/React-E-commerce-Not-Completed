@@ -1,5 +1,9 @@
 // lottie-react
 import Lottie from 'lottie-react'
+// import notFound from '@assets/lotties/notFound.json'
+// import empty from '@assets/lotties/empty.json'
+// import loading from '@assets/lotties/loading.json'
+// import error from '@assets/lotties/error.json'
 // lottie files
 import { notFound, empty, loading, error } from '@assets/lotties/index'
 
@@ -12,19 +16,10 @@ const lottieFilesMap = {
 }
 
 // defining type of props
-interface LottieHandlerProps {
+type LottieHandlerProps = {
   type: keyof typeof lottieFilesMap
   message?: string
   className?: string
-}
-
-const lottieStyle = {
-  width: '250px',
-  // border: '1px solid red',
-  borderRadius: '10px',
-  boxShadow: 'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px',
-  // backgroundColor: '#ffffff',
-  padding: '0',
 }
 
 // LottieHandler component
@@ -39,7 +34,7 @@ const LottieHandler = ({ type, message, className }: LottieHandlerProps) => {
 
   return (
     <div className={`d-flex flex-column align-items-center ${className}`}>
-      <Lottie animationData={lottie} style={lottieStyle} />
+      <Lottie animationData={lottie} style={{ width: '250px' }} />
       {message && <h3 style={messageStyle}>{message}</h3>}
     </div>
   )

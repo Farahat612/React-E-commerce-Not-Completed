@@ -8,6 +8,9 @@ import {
 // importing TLoading customType
 import { TLoading } from '@types'
 
+// importing LottieHandler
+import LottieHandler from '@components/feedback/LottieHandler/LottieHandler'
+
 // defining cases of skeletons
 const skeletonsTypes = {
   category: CategorySkeleton,
@@ -34,7 +37,9 @@ const Loading = ({
     return <Skeleton />
   }
   if (error) {
-    return <h1>failed ... {error}</h1>
+    const message = `Couldn't find any ${type} data. Please try again later.
+    Error: ${error as string}`
+    return <LottieHandler type='error' message={message} />
   }
   return <>{children}</>
 }

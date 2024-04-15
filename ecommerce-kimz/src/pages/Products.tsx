@@ -19,6 +19,7 @@ const Products = () => {
       <Loading loading={loading} error={error} type='product'>
         <GridList<IProduct>
           records={productsFullInfo}
+          emptyMessage='No products found'
           renderItem={(record) => <Product {...record} />}
         />
       </Loading>

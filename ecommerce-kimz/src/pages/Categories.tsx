@@ -15,9 +15,10 @@ const Categories = () => {
   return (
     <>
       <Heading title='Categories' />
-      <Loading loading={loading} error={error} type='category' >
+      <Loading loading={loading} error={error} type='category'>
         <GridList<ICategory>
           records={categories}
+          emptyMessage='No categories found'
           renderItem={(record) => <Category {...record} />}
         />
       </Loading>
