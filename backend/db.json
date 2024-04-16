@@ -97,5 +97,12 @@
       "max": 2
     }
   ],
-  "wishlist": []
+  "wishlist": [],
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com"
+    }
+  ]
 }
