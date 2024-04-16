@@ -3,6 +3,13 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 // components
 import { Heading } from '@components/shared'
 
+
+// Form inputs type
+// type TFormInputs = {
+//   email: string
+//   password: string
+// }
+
 const Login = () => {
   return (
     <>
@@ -17,9 +24,6 @@ const Login = () => {
                 placeholder='Enter email'
                 name='email'
               />
-              <Form.Text className='text-muted'>
-                We'll never share your email with anyone else.
-              </Form.Text>
             </Form.Group>
 
             <Form.Group className='mb-3'>
