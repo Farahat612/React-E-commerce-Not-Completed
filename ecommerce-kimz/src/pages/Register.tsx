@@ -2,6 +2,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 // zod
 import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 // bootstrap
 import { Form, Button, Row, Col } from 'react-bootstrap'
 // components
@@ -38,7 +39,13 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TFormInputs>()
+  } = useForm<TFormInputs>(
+    // zodResolver to validate form inputs
+    {
+      mode: 'onBlur',
+      resolver: zodResolver(signupSchema),
+    }
+  )
 
   // submitForm function
   const submitForm: SubmitHandler<TFormInputs> = (data) => {
@@ -48,7 +55,7 @@ const Register = () => {
   return (
     <>
       <Heading title='User Registration' />
-      <Row>
+      <Row className='my-5'>
         <Col md={{ span: 6, offset: 3 }}>
           <Form onSubmit={handleSubmit(submitForm)}>
             <Form.Group className='mb-3'>
