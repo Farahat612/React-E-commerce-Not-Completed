@@ -21,30 +21,38 @@ import cartReducer from '@store/cart/cartSlice'
 import wishlistReducer from '@store/wishlist/wishlistSlice'
 import authReducer from './auth/authSlice'
 
+// persist configs
+const rootPersistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['cart', 'auth'],
+}
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whiteList: ['user', 'accessToken'],
+}
 const cartPersistConfig = {
   key: 'cart',
   storage,
   whitelist: ['items'],
 }
 
-const wishlistPersistConfig = {
-  key: 'wishlist',
-  storage,
-  whitelist: ['itemsId'],
-}
-
+// combining the reducers
 const rootReducer = combineReducers({
   categories: categoriesReducer,
   products: productsReducer,
-  auth: authReducer,
+  auth: persistReducer(authPersistConfig, authReducer),
   cart: persistReducer(cartPersistConfig, cartReducer),
-  wishlist: persistReducer(wishlistPersistConfig, wishlistReducer),
+  wishlist: wishlistReducer,
 })
 
-// const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
+// persisting the root reducer
+const persistedReducer = persistReducer(rootPersistConfig, rootReducer)
 
+// creating the store
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   // solving the non-serializable value cosole warning issue
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
