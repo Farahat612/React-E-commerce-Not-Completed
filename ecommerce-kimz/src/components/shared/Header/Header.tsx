@@ -23,7 +23,7 @@ const Header = () => {
   // getting the wishlist
   useEffect(() => {
     if (accessToken) {
-      dispatch(getWishlist())
+      dispatch(getWishlist('productsIds'))
     }
   }, [dispatch, accessToken])
 

@@ -5,6 +5,7 @@ import { IProduct, TLoading } from '@types'
 // actions
 import likeToggle from './actions/likeToggle'
 import getWishlist from './actions/getWishlist'
+import { authLogout } from '@store/auth/authSlice'
 
 // Defining the type of the state
 interface IWishlistState {
@@ -57,12 +58,22 @@ const wishlistSlice = createSlice({
       state.loading = 'pending'
     })
     builder.addCase(getWishlist.fulfilled, (state, { payload }) => {
-      state.productsFullInfo = payload
       state.loading = 'succeeded'
+      if (payload.dataType === 'productsFullInfo') {
+        state.productsFullInfo = payload.data as IProduct[]
+      } else if (payload.dataType === 'productsIds') {
+        state.itemsId = payload.data as number[]
+      }
     })
     builder.addCase(getWishlist.rejected, (state, { payload }) => {
       state.error = payload as string
       state.loading = 'failed'
+    })
+
+    // Handling the authLogout action
+    builder.addCase(authLogout, (state) => {
+      state.itemsId = []
+      state.productsFullInfo = []
     })
   },
 })

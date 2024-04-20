@@ -8,4 +8,5 @@ export interface IProduct {
   quantity?: number
   max: number
   isLiked?: boolean
+  isAuthenticated?: boolean
 }

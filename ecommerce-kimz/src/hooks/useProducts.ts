@@ -18,6 +18,7 @@ const useProducts = () => {
   // cart and wishlist items
   const cartItems = useAppSelector((state) => state.cart.items)
   const wishlistItems = useAppSelector((state) => state.wishlist.itemsId)
+  const userAccessToken = useAppSelector((state) => state.auth.accessToken)
 
   // Fetching the products
   useEffect(() => {
@@ -36,6 +37,7 @@ const useProducts = () => {
     ...product,
     quantity: cartItems[product.id],
     isLiked: wishlistItems.includes(product.id),
+    isAuthenticated: userAccessToken ? true : false,
   }))
 
   return { loading, error, productsFullInfo, prefix }

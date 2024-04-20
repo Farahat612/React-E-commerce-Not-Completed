@@ -17,7 +17,7 @@ const useWishlist = () => {
 
   // fetching the wishlist
   useEffect(() => {
-    const promise = dispatch(getWishlist())
+    const promise = dispatch(getWishlist('productsFullInfo'))
     return () => {
       // clean up the productsFullInfo
       dispatch(wishListProductsFullInfoCleanUp())
@@ -32,6 +32,7 @@ const useWishlist = () => {
     ...el,
     isLiked: true,
     quantity: cartItems[el.id],
+    isAuthenticated: true,
   }))
 
   return {
