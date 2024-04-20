@@ -21,7 +21,7 @@ type TResponse = {
 
 // login thunk
 export const authLogin = createAsyncThunk(
-  'auth/login',
+  'auth/authLogin',
   async (formData: TFormData, { rejectWithValue }) => {
     try {
       const response = await axios.post<TResponse>('/login', formData)
