@@ -98,5 +98,13 @@
     }
   ],
   "wishlist": [],
-  "users": []
+  "users": [
+    {
+      "email": "mike@mckinsey.com",
+      "password": "$2a$10$m7gdI/rd7aZtKRVMniTA7.qVKKfQIUVzH2.aOf/5BmqX9yJTMjDWS",
+      "firstName": "Mike",
+      "lastName": "Ross",
+      "id": 1
+    }
+  ]
 }
