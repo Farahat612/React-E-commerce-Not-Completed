@@ -20,8 +20,11 @@ const Cart = lazy(() => import('@pages/Cart'))
 const WishList = lazy(() => import('@pages/WishList'))
 const Login = lazy(() => import('@pages/Login'))
 const Register = lazy(() => import('@pages/Register'))
+const Profile = lazy(() => import('@pages/Profile'))
 import NotFound from '@pages/NotFound'
+// Components
 import { PageSuspenseFallback } from '@components/feedback/index'
+import ProtectedRoute from '@components/Auth/ProtectedRoute'
 
 // Products route guard -- > Validates the category prefix in client side
 const ProductsWrapper = () => {
@@ -64,10 +67,15 @@ const AppRouter = () => {
                 path='categories/products/:prefix'
                 element={<ProductsWrapper />}
               />
-              <Route path='/login' element={<Login />} />
-              <Route path='/register' element={<Register />} />
               <Route path='/cart' element={<Cart />} />
               <Route path='/wishlist' element={<WishList />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+              <Route path='/profile' 
+                element={<ProtectedRoute />}
+              >
+                <Route index element={<Profile />} />
+              </Route>
               <Route path='*' element={<NotFound />} />
             </Routes>
           </PageSuspenseFallback>

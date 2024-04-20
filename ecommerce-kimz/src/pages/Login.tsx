@@ -58,7 +58,7 @@ const Login = () => {
     }
   }, [dispatch])
 
-  // navigate to home if user is already logged in
+  // navigate to home if user is already logged in [protecting login page]
   if (accessToken) {
     return <Navigate to='/' />
   }

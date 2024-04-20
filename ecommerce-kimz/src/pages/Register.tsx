@@ -81,7 +81,7 @@ const Register = () => {
     }
   }, [dispatch])
 
-  // Redirect to login if accessToken is available
+  // Redirect to login if accessToken is available [protecting register page]
   if (accessToken) {
     return <Navigate to='/login' />
   }
