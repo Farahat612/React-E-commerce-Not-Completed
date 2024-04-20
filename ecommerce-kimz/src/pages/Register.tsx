@@ -61,7 +61,7 @@ const Register = () => {
   const dispatch = useAppDispatch()
   // initialize navigate
   const navigate = useNavigate()
-  // initialize auth state
+  // accessing auth state
   const { loading, error, accessToken } = useAppSelector((state) => state.auth)
 
   // submitForm function
