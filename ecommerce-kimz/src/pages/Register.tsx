@@ -5,10 +5,17 @@ import useCheckEmailAvailability from '@hooks/useCheckEmailAvailability'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signUpSchema, signUpType } from '@validations/signUpSchema'
 // bootstrap
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button, Row, Col, Spinner } from 'react-bootstrap'
 // components
 import { Heading } from '@components/shared'
 import { Input } from '@components/form'
+// react
+import { useEffect } from 'react'
+// react-router-dom
+import { useNavigate, Navigate } from 'react-router-dom'
+// redux
+import { useAppDispatch, useAppSelector } from '@store/hooks'
+import { authRegister, resetUI } from '@store/auth/authSlice'
 
 const Register = () => {
   // Destructuring useForm into register
@@ -25,11 +32,6 @@ const Register = () => {
       resolver: zodResolver(signUpSchema),
     }
   )
-
-  // submitForm function
-  const submitForm: SubmitHandler<signUpType> = (data) => {
-    console.log(data)
-  }
 
   // Destrcuturing useCheckEmailAvailability
   const {
@@ -53,6 +55,35 @@ const Register = () => {
     if (isDirty && invalid && enteredEmail) {
       resetCheckEmailAvailability()
     }
+  }
+
+  // initialize dispatch
+  const dispatch = useAppDispatch()
+  // initialize navigate
+  const navigate = useNavigate()
+  // initialize auth state
+  const { loading, error, accessToken } = useAppSelector((state) => state.auth)
+
+  // submitForm function
+  const submitForm: SubmitHandler<signUpType> = (data) => {
+    const { firstName, lastName, email, password } = data
+    dispatch(authRegister({ firstName, lastName, email, password }))
+      .unwrap()
+      .then(() => {
+        navigate('/login?message=account_created')
+      })
+  }
+
+  // useEffect to reset UI
+  useEffect(() => {
+    return () => {
+      dispatch(resetUI())
+    }
+  }, [dispatch])
+
+  // Redirect to login if accessToken is available
+  if (accessToken) {
+    return <Navigate to='/login' />
   }
 
   return (
@@ -118,9 +149,26 @@ const Register = () => {
               error={errors.confirmPassword?.message}
             />
 
-            <Button variant='info' type='submit' style={{ color: 'white' }}>
-              Register
+            <Button
+              variant='info'
+              type='submit'
+              style={{ color: 'white' }}
+              disabled={
+                emailAvailabilityStatus === 'checking'
+                  ? true
+                  : false || loading === 'pending'
+              }
+            >
+              {loading === 'pending' ? (
+                <>
+                  <Spinner animation='border' size='sm'></Spinner> Loading...
+                </>
+              ) : (
+                'Submit'
+              )}
             </Button>
+
+            {error && <p className='text-danger mt-3'>{error}</p>}
           </Form>
         </Col>
       </Row>
