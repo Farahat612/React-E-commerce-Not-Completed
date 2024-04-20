@@ -14,10 +14,12 @@ import {
   REGISTER,
 } from 'redux-persist'
 
+// reducers
 import categoriesReducer from './categories/categoriesSlice'
 import productsReducer from '@store/products/productsSlice'
 import cartReducer from '@store/cart/cartSlice'
 import wishlistReducer from '@store/wishlist/wishlistSlice'
+import authReducer from './auth/authSlice'
 
 const cartPersistConfig = {
   key: 'cart',
@@ -34,6 +36,7 @@ const wishlistPersistConfig = {
 const rootReducer = combineReducers({
   categories: categoriesReducer,
   products: productsReducer,
+  auth: authReducer,
   cart: persistReducer(cartPersistConfig, cartReducer),
   wishlist: persistReducer(wishlistPersistConfig, wishlistReducer),
 })
