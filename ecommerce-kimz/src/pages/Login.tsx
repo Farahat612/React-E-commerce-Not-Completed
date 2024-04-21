@@ -1,62 +1,26 @@
-// react-hook-form
-import { useForm, SubmitHandler } from 'react-hook-form'
-// zod
-import { zodResolver } from '@hookform/resolvers/zod'
-import { signInSchema, signInType } from '@validations/signInSchema'
+// custom hook
+import useLogin from '@hooks/useLogin'
 // bootstrap
 import { Form, Button, Row, Col, Alert, Spinner } from 'react-bootstrap'
 // components
 import { Heading } from '@components/shared'
 import { Input } from '@components/form'
-// react
-import { useEffect } from 'react'
+
 // react-router-dom
-import { useSearchParams, useNavigate, Navigate } from 'react-router-dom'
-// redux
-import { useAppDispatch, useAppSelector } from '@store/hooks'
-import { authLogin, resetUI } from '@store/auth/authSlice'
+import { Navigate } from 'react-router-dom'
 
 const Login = () => {
-  // Destructuring useForm into register
+  // custom hook
   const {
+    accessToken,
+    loading,
+    error,
+    formErrors,
+    searchParams,
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<signInType>(
-    // zodResolver to validate form inputs
-    {
-      mode: 'onBlur',
-      resolver: zodResolver(signInSchema),
-    }
-  )
-
-  // initialize dispatch
-  const dispatch = useAppDispatch()
-  // initialize navigate
-  const navigate = useNavigate()
-  // initialize searchParams
-  const [searchParams, setSearchParams] = useSearchParams()
-  // access auth state
-  const { accessToken, loading, error } = useAppSelector((state) => state.auth)
-
-  // submitForm function
-  const submitForm: SubmitHandler<signInType> = (data) => {
-    if (searchParams.get('message')) {
-      setSearchParams('')
-    }
-    dispatch(authLogin(data))
-      .unwrap()
-      .then(() => {
-        navigate('/')
-      })
-  }
-
-  // useEffect to reset UI
-  useEffect(() => {
-    return () => {
-      dispatch(resetUI())
-    }
-  }, [dispatch])
+    submitForm,
+  } = useLogin()
 
   // navigate to home if user is already logged in [protecting login page]
   if (accessToken) {
@@ -85,7 +49,7 @@ const Login = () => {
               label='Email'
               name='email'
               register={register}
-              error={errors.email?.message}
+              error={formErrors.email?.message}
             />
 
             <Input
@@ -93,7 +57,7 @@ const Login = () => {
               name='password'
               type='password'
               register={register}
-              error={errors.password?.message}
+              error={formErrors.password?.message}
             />
 
             <Button variant='info' type='submit' style={{ color: 'white' }}>
