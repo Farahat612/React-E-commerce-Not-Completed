@@ -123,6 +123,13 @@
       "firstName": "Rami",
       "lastName": "Adel",
       "id": 2
+    },
+    {
+      "email": "Ahmed@test.com",
+      "password": "$2a$10$IwU6opDWdwnHD.kv23gbKeS3P/KU480YP5pPkfWGm8KNsdNbQspD6",
+      "firstName": "Ahmed",
+      "lastName": "Taha",
+      "id": 3
     }
   ]
 }
