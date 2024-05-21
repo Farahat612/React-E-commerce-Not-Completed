@@ -1,12 +1,13 @@
 // styles
 import styles from './styles.module.css'
-const { cartItem, product, productImg, productInfo, cartItemSelection } = styles
+const { cartItem, cartItemSelection } = styles
 // Bootstrap Components
 import { Button, Form } from 'react-bootstrap'
 // Types
 import { IProduct } from '@types'
 // react imports
 import { memo } from 'react'
+import ProductInfo from '../ProductInfo/ProductInfo'
 
 // Defining the props type
 type CartItemProps = IProduct & {
@@ -44,23 +45,22 @@ const CartItem = memo(
 
     return (
       <div className={cartItem}>
-        <div className={product}>
-          <div className={productImg}>
-            <img src={img} alt={title} />
-          </div>
-          <div className={productInfo}>
-            <h2>{title}</h2>
-            <h3>{price.toFixed(2)} EGP</h3>
-            <Button
-              variant='secondary'
-              style={{ color: 'white', width: '100px' }}
-              className='mt-auto'
-              onClick={() => removeItemHandler(id)}
-            >
-              Remove
-            </Button>
-          </div>
-        </div>
+        <ProductInfo
+          title={title}
+          price={price}
+          img={img}
+          direction='column'
+          // style={{ width: '100%' }}
+        >
+          <Button
+            variant='secondary'
+            style={{ color: 'white', width: '100px' }}
+            className='mt-auto'
+            onClick={() => removeItemHandler(id)}
+          >
+            Remove
+          </Button>
+        </ProductInfo>
 
         <div className={cartItemSelection}>
           <span className='d-block mb-1'>Quantity</span>

@@ -1,6 +1,6 @@
 import { Button, Spinner, Modal } from 'react-bootstrap'
 import styles from './styles.module.css'
-const { product, productImg, maximumNotice, wishlistBtn } = styles
+const { maximumNotice, wishlistBtn } = styles
 // importing types
 import { IProduct } from '@types'
 // redux
@@ -12,6 +12,8 @@ import { useEffect, useState, memo } from 'react'
 // Icons
 import Heart from '@assets/svg/heart.svg?react'
 import HeartFill from '@assets/svg/heart-fill.svg?react'
+
+import ProductInfo from '../ProductInfo/ProductInfo'
 
 const Product = memo(
   ({
@@ -84,7 +86,12 @@ const Product = memo(
             You need to login first to add this item to your wishlist.
           </Modal.Body>
         </Modal>
-        <div className={product}>
+        <ProductInfo
+          title={title}
+          price={price}
+          img={img}
+          direction='row'
+        >
           <div className={wishlistBtn} onClick={likeToggleHandler}>
             {isloading ? (
               <Spinner animation='border' size='sm' variant='warning' />
@@ -94,11 +101,7 @@ const Product = memo(
               <Heart />
             )}
           </div>
-          <div className={productImg}>
-            <img src={img} alt={title} />
-          </div>
-          <h2>{title}</h2>
-          <h3>{price.toFixed(2)} EGP</h3>
+          
           <p className={maximumNotice}>
             {quantityReachedToMax
               ? 'You reach to the limit'
@@ -106,7 +109,7 @@ const Product = memo(
           </p>
           <Button
             variant='info'
-            style={{ color: 'white' }}
+            style={{ color: 'white', width: '100%'}}
             onClick={addToCartHandler}
             disabled={isBtnDisabled || quantityReachedToMax}
           >
@@ -119,7 +122,7 @@ const Product = memo(
               'Add to cart'
             )}
           </Button>
-        </div>
+        </ProductInfo>
       </>
     )
   }

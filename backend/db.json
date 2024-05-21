@@ -97,18 +97,7 @@
       "max": 2
     }
   ],
-  "wishlist": [
-    {
-      "userId": 2,
-      "productId": 1,
-      "id": 1
-    },
-    {
-      "userId": 2,
-      "productId": 3,
-      "id": 2
-    }
-  ],
+  "wishlist": [],
   "users": [
     {
       "email": "mike@mckinsey.com",
