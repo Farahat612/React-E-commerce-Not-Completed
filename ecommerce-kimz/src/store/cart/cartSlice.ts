@@ -50,6 +50,10 @@ const cartSlice = createSlice({
     cleanCartProductsFullInfo(state) {
       state.productsFullInfo = []
     },
+    clearCart: (state) => {
+      state.items = {}
+      state.productsFullInfo = []
+    },
   },
   extraReducers: (builder) => {
     // Handling the getProductsInfo thunk actions
@@ -75,6 +79,7 @@ export const {
   itemQtyChange,
   removeFromCart,
   cleanCartProductsFullInfo,
+  clearCart,
 } = cartSlice.actions
 // Exporting async thunk and selectors
 export {
