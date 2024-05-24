@@ -77,7 +77,9 @@ const Header = () => {
                   <NavDropdown.Item as={NavLink} to='profile'>
                     Profile
                   </NavDropdown.Item>
-                  <NavDropdown.Item>Orders</NavDropdown.Item>
+                  <NavDropdown.Item as={NavLink} to='profile/orders' end>
+                    Orders
+                  </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item
                     as={NavLink}

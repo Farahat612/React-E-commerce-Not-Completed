@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom'
 // Layouts
 const MainLayout = lazy(() => import('@layouts/Main/MainLayout'))
+const ProfileLayout = lazy(() => import('@layouts/Profile/ProfileLayout'))
 //
 // Pages
 const Home = lazy(() => import('@pages/Home'))
@@ -19,6 +20,7 @@ const WishList = lazy(() => import('@pages/WishList'))
 const Login = lazy(() => import('@pages/Login'))
 const Register = lazy(() => import('@pages/Register'))
 const Profile = lazy(() => import('@pages/Profile'))
+const Orders = lazy(() => import('@pages/Orders'))
 // Components
 import ProtectedRoute from '@components/Auth/ProtectedRoute'
 import { LottieHandler, PageSuspenseFallback } from '@components/feedback/index'
@@ -123,10 +125,28 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <PageSuspenseFallback>
-              <Profile />
+              <ProfileLayout />
             </PageSuspenseFallback>
           </ProtectedRoute>
         ),
+        children: [
+          {
+            index: true,
+            element: (
+              <PageSuspenseFallback>
+                <Profile />
+              </PageSuspenseFallback>
+            ),
+          },
+          {
+            path: 'orders',
+            element: (
+              <PageSuspenseFallback>
+                <Orders />
+              </PageSuspenseFallback>
+            ),
+          },
+        ],
       },
     ],
   },
