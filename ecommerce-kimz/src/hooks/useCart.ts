@@ -8,6 +8,7 @@ import {
   removeFromCart,
   cleanCartProductsFullInfo,
 } from '@store/cart/cartSlice'
+import { resetOrderStatus } from '@store/orders/ordersSlice'
 
 // define the useCart hook
 const useCart = () => {
@@ -16,14 +17,17 @@ const useCart = () => {
   const { items, productsFullInfo, loading, error } = useAppSelector(
     (state) => state.cart
   )
-  // user access 
+  // user access
   const userAccessToken = useAppSelector((state) => state.auth.accessToken)
+  // order status
+  const placeOrderStatus = useAppSelector((state) => state.orders.loading)
   // get the products info
   useEffect(() => {
     const promise = dispatch(getProductsInfo())
     return () => {
       promise.abort()
       dispatch(cleanCartProductsFullInfo())
+      dispatch(resetOrderStatus())
     }
   }, [dispatch])
   // map the products info with the items in the cart
@@ -51,6 +55,7 @@ const useCart = () => {
     loading,
     error,
     userAccessToken,
+    placeOrderStatus,
     changeQuantityHandler,
     removeItemHandler,
   }

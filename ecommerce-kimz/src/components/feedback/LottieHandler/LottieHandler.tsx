@@ -5,7 +5,7 @@ import Lottie from 'lottie-react'
 // import loading from '@assets/lotties/loading.json'
 // import error from '@assets/lotties/error.json'
 // lottie files
-import { notFound, empty, loading, error } from '@assets/lotties/index'
+import { notFound, empty, loading, error, success } from '@assets/lotties/index'
 
 // defining cases of lottie files
 const lottieFilesMap = {
@@ -13,6 +13,7 @@ const lottieFilesMap = {
   empty,
   loading,
   error,
+  success,
 }
 
 // defining type of props
