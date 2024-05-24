@@ -2,17 +2,18 @@ import { createSlice } from '@reduxjs/toolkit'
 import { TorderItem, TLoading } from '@types'
 
 import placeOrder from './actions/placeOrder'
+import getOrdersPerUser from './actions/getOrdersPerUser'
 
 // Defining a type for the slice state
 interface IOrderState {
-  orderList: TorderItem[]
+  ordersList: TorderItem[]
   loading: TLoading
   error: string | null
 }
 
 // Defining the initial state using that type
 const initialState: IOrderState = {
-  orderList: [],
+  ordersList: [],
   loading: 'idle',
   error: null,
 }
@@ -40,6 +41,18 @@ const ordersSlice = createSlice({
       state.loading = 'failed'
       state.error = action.payload as string
     })
+    // handling get orders per user thunk actions
+    builder.addCase(getOrdersPerUser.pending, (state) => {
+      state.loading = 'pending'
+    })
+    builder.addCase(getOrdersPerUser.fulfilled, (state, action) => {
+      state.loading = 'succeeded'
+      state.ordersList = action.payload
+    })
+    builder.addCase(getOrdersPerUser.rejected, (state, action) => {
+      state.loading = 'failed'
+      state.error = action.payload as string
+    })
   },
 })
 
@@ -47,7 +60,7 @@ const ordersSlice = createSlice({
 export const { resetOrderStatus } = ordersSlice.actions
 
 // Exporting async thunk and selectors
-export { placeOrder }
+export { placeOrder, getOrdersPerUser }
 
 // Exporting the reducer
 export default ordersSlice.reducer
