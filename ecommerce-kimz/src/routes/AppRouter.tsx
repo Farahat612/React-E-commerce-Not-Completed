@@ -1,12 +1,10 @@
 // react hooks
-import { useEffect, lazy, Suspense } from 'react'
+import { Suspense, lazy } from 'react'
 // react router dom
+import NotFound from '@pages/NotFound'
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useParams,
-  useNavigate,
+  RouterProvider,
+  createBrowserRouter
 } from 'react-router-dom'
 // Layouts
 const MainLayout = lazy(() => import('@layouts/Main/MainLayout'))
@@ -21,68 +19,121 @@ const WishList = lazy(() => import('@pages/WishList'))
 const Login = lazy(() => import('@pages/Login'))
 const Register = lazy(() => import('@pages/Register'))
 const Profile = lazy(() => import('@pages/Profile'))
-import NotFound from '@pages/NotFound'
 // Components
-import { PageSuspenseFallback } from '@components/feedback/index'
 import ProtectedRoute from '@components/Auth/ProtectedRoute'
+import { LottieHandler, PageSuspenseFallback } from '@components/feedback/index'
 
-// Products route guard -- > Validates the category prefix in client side
-const ProductsWrapper = () => {
-  const { prefix } = useParams()
-  const navigate = useNavigate()
-  // Check if prefix is a string and contains only lowercase letters
-  useEffect(() => {
-    if (typeof prefix !== 'string' || !/^[a-z]+$/.test(prefix)) {
-      navigate('/notFound', {
-        state: { message: 'The category you are looking for can not be found' },
-      })
-    }
-  }, [prefix, navigate])
 
-  // Validating again outside of useEffect because React still needs to know what to render for this component in the current render cycle
-  if (typeof prefix !== 'string' || !/^[a-z]+$/.test(prefix)) {
-    return null
-  }
-
-  return <Products />
-}
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: (
+      <Suspense
+        fallback={
+          <div style={{ marginTop: '10%' }}>
+            <LottieHandler type='loading' message='Loading please wait...' />
+          </div>
+        }
+      >
+        <MainLayout />
+      </Suspense>
+    ),
+    errorElement: <NotFound />,
+    children: [
+      {
+        index: true,
+        element: (
+          <PageSuspenseFallback>
+            <Home />
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: '/cart',
+        element: (
+          <PageSuspenseFallback>
+            <Cart />
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: '/wishlist',
+        element: (
+          <ProtectedRoute>
+            <PageSuspenseFallback>
+              <WishList />
+            </PageSuspenseFallback>
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/categories',
+        element: (
+          <PageSuspenseFallback>
+            <Categories />
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: '/categories/products/:prefix',
+        element: (
+          <PageSuspenseFallback>
+            <Products />
+          </PageSuspenseFallback>
+        ),
+        loader: ({ params }) => {
+          if (
+            typeof params.prefix !== 'string' ||
+            !/^[a-z]+$/i.test(params.prefix)
+          ) {
+            throw new Response('Bad Request', {
+              statusText: 'Category not found',
+              status: 400,
+            })
+          }
+          return true
+        },
+      },
+      {
+        path: 'about',
+        element: (
+          <PageSuspenseFallback>
+            <About />
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: 'login',
+        element: (
+          <PageSuspenseFallback>
+            <Login />
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: 'register',
+        element: (
+          <PageSuspenseFallback>
+            <Register />
+          </PageSuspenseFallback>
+        ),
+      },
+      {
+        path: 'profile',
+        element: (
+          <ProtectedRoute>
+            <PageSuspenseFallback>
+              <Profile />
+            </PageSuspenseFallback>
+          </ProtectedRoute>
+        ),
+      },
+    ],
+  },
+])
 
 const AppRouter = () => {
-  return (
-    <Suspense
-      fallback={
-        <div className='d-flex flex-column align-items-center'>
-          <h5 style={{ marginTop: '20%' }}>Loading please wait...</h5>
-        </div>
-      }
-    >
-      <Router>
-        <MainLayout>
-          <PageSuspenseFallback>
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/about' element={<About />} />
-              <Route path='/categories' element={<Categories />} />
-              <Route
-                path='categories/products/:prefix'
-                element={<ProductsWrapper />}
-              />
-              <Route path='/cart' element={<Cart />} />
-              <Route path='/wishlist' element={<WishList />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/register' element={<Register />} />
-              <Route path='/profile' 
-                element={<ProtectedRoute />}
-              >
-                <Route index element={<Profile />} />
-              </Route>
-              <Route path='*' element={<NotFound />} />
-            </Routes>
-          </PageSuspenseFallback>
-        </MainLayout>
-      </Router>
-    </Suspense>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default AppRouter

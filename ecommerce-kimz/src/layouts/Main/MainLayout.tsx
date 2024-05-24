@@ -1,17 +1,16 @@
 import { Container } from 'react-bootstrap'
 import { Header, Footer } from '@components/shared/index'
 import styles from './styles.module.css'
+import { Outlet } from 'react-router-dom'
 const { container, wrapper } = styles
 
-type MainLayoutProps = {
-  children: React.ReactNode
-}
-
-const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+const MainLayout = () => {
   return (
     <Container className={container}>
       <Header />
-      <div className={wrapper}>{children}</div>
+      <div className={wrapper}>
+        <Outlet />
+      </div>
       <Footer />
     </Container>
   )
