@@ -9,7 +9,7 @@ import { LottieHandler } from '@components/feedback/index'
 
 const Cart = () => {
   // use the custom hook
-  const { products, loading, error, changeQuantityHandler, removeItemHandler } =
+  const { products, loading, error, changeQuantityHandler, removeItemHandler, userAccessToken } =
     useCart()
 
   return (
@@ -24,7 +24,9 @@ const Cart = () => {
               removeItemHandler={removeItemHandler}
             />
 
-            <CartSubTotal products={products} />
+            <CartSubTotal products={products}
+              userAccessToken={userAccessToken}
+            />
           </>
         ) : (
           <LottieHandler type='empty' message='Your cart is empty' />
